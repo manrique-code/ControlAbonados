@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +55,104 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012050046443_AbonadosMigration.cs" />
+    <Compile Include="Migrations\202012050046443_AbonadosMigration.Designer.cs">
+      <DependentUpon>202012050046443_AbonadosMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012050425550_BloqueMigration.cs" />
+    <Compile Include="Migrations\202012050425550_BloqueMigration.Designer.cs">
+      <DependentUpon>202012050425550_BloqueMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012050433026_TipoPegueMigration.cs" />
+    <Compile Include="Migrations\202012050433026_TipoPegueMigration.Designer.cs">
+      <DependentUpon>202012050433026_TipoPegueMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012050435554_AñoMigration.cs" />
+    <Compile Include="Migrations\202012050435554_AñoMigration.Designer.cs">
+      <DependentUpon>202012050435554_AñoMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012050438590_MesMigration.cs" />
+    <Compile Include="Migrations\202012050438590_MesMigration.Designer.cs">
+      <DependentUpon>202012050438590_MesMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012050440310_EstadoPegueMigration.cs" />
+    <Compile Include="Migrations\202012050440310_EstadoPegueMigration.Designer.cs">
+      <DependentUpon>202012050440310_EstadoPegueMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012050517105_BloqueIdChange.cs" />
+    <Compile Include="Migrations\202012050517105_BloqueIdChange.Designer.cs">
+      <DependentUpon>202012050517105_BloqueIdChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012050518159_PegueIdAbonado.cs" />
+    <Compile Include="Migrations\202012050518159_PegueIdAbonado.Designer.cs">
+      <DependentUpon>202012050518159_PegueIdAbonado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012050523576_PegueDemasIdMigration.cs" />
+    <Compile Include="Migrations\202012050523576_PegueDemasIdMigration.Designer.cs">
+      <DependentUpon>202012050523576_PegueDemasIdMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012050529345_ControlPagoMigration.cs" />
+    <Compile Include="Migrations\202012050529345_ControlPagoMigration.Designer.cs">
+      <DependentUpon>202012050529345_ControlPagoMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012050531405_ControlPagoIdAddMigration.cs" />
+    <Compile Include="Migrations\202012050531405_ControlPagoIdAddMigration.Designer.cs">
+      <DependentUpon>202012050531405_ControlPagoIdAddMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Abonado.cs" />
+    <Compile Include="Models\Bloque.cs" />
+    <Compile Include="Models\ControlPago.cs" />
+    <Compile Include="Models\DataContext.cs" />
+    <Compile Include="Models\EstadoPegue.cs" />
+    <Compile Include="Models\Mes.cs" />
+    <Compile Include="Models\Pegue.cs" />
+    <Compile Include="Models\TipoPegue.cs" />
+    <Compile Include="Models\Año.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050046443_AbonadosMigration.resx">
+      <DependentUpon>202012050046443_AbonadosMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050425550_BloqueMigration.resx">
+      <DependentUpon>202012050425550_BloqueMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050433026_TipoPegueMigration.resx">
+      <DependentUpon>202012050433026_TipoPegueMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050435554_AñoMigration.resx">
+      <DependentUpon>202012050435554_AñoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050438590_MesMigration.resx">
+      <DependentUpon>202012050438590_MesMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050440310_EstadoPegueMigration.resx">
+      <DependentUpon>202012050440310_EstadoPegueMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050517105_BloqueIdChange.resx">
+      <DependentUpon>202012050517105_BloqueIdChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050518159_PegueIdAbonado.resx">
+      <DependentUpon>202012050518159_PegueIdAbonado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050523576_PegueDemasIdMigration.resx">
+      <DependentUpon>202012050523576_PegueDemasIdMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050529345_ControlPagoMigration.resx">
+      <DependentUpon>202012050529345_ControlPagoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012050531405_ControlPagoIdAddMigration.resx">
+      <DependentUpon>202012050531405_ControlPagoIdAddMigration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +161,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -75,6 +176,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="res\icons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
