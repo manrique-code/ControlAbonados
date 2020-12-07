@@ -117,4 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="menu-blanco-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\menu-blanco-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lista-abonado-blanco-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\lista-abonado-blanco-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pegue-blanco-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\pegue-blanco-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add-abonado-blanco-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\add-abonado-blanco-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user-blanco-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\user-blanco-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="x-negro-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\x-negro-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menos-rojo-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\menos-rojo-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="home-blanco-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\home-blanco-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="buscar-negro-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\buscar-negro-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="x-azul-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\x-azul-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="x-blanco-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\x-blanco-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mas-verde-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\mas-verde-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="menu-azul-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\menu-azul-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="home-negro-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\icons\home-negro-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

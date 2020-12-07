@@ -33,17 +33,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Bunifu_UI_v1.5.3">
+      <HintPath>..\..\..\..\..\Programacion Entornos de Desarrollo Visual\Proyecto de PEDV\res\Design Dashboard Modern\BUNIFU UI\Bunifu_UI_v1.5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,11 +67,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DataAbonadoAccess.cs" />
+    <Compile Include="Forms\Abonados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Abonados.Designer.cs">
+      <DependentUpon>Abonados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReportesAbonados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportesAbonados.Designer.cs">
+      <DependentUpon>ReportesAbonados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReportesMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportesMenu.Designer.cs">
+      <DependentUpon>ReportesMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202012050046443_AbonadosMigration.cs" />
     <Compile Include="Migrations\202012050046443_AbonadosMigration.Designer.cs">
@@ -105,6 +136,10 @@
     <Compile Include="Migrations\202012050531405_ControlPagoIdAddMigration.Designer.cs">
       <DependentUpon>202012050531405_ControlPagoIdAddMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012071126319_EliminarTelefonoAbonadoMigration.cs" />
+    <Compile Include="Migrations\202012071126319_EliminarTelefonoAbonadoMigration.Designer.cs">
+      <DependentUpon>202012071126319_EliminarTelefonoAbonadoMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonado.cs" />
     <Compile Include="Models\Bloque.cs" />
@@ -117,8 +152,17 @@
     <Compile Include="Models\Año.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Abonados.resx">
+      <DependentUpon>Abonados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportesAbonados.resx">
+      <DependentUpon>ReportesAbonados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReportesMenu.resx">
+      <DependentUpon>ReportesMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012050046443_AbonadosMigration.resx">
       <DependentUpon>202012050046443_AbonadosMigration.cs</DependentUpon>
@@ -153,6 +197,9 @@
     <EmbeddedResource Include="Migrations\202012050531405_ControlPagoIdAddMigration.resx">
       <DependentUpon>202012050531405_ControlPagoIdAddMigration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012071126319_EliminarTelefonoAbonadoMigration.resx">
+      <DependentUpon>202012071126319_EliminarTelefonoAbonadoMigration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -178,11 +225,49 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="res\icons\" />
+    <None Include="res\icons\x-azul-512.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\x-negro-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\menu-azul-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\menu-blanco-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\x-blanco-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\home-blanco-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\add-abonado-blanco-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\user-blanco-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\pegue-blanco-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\lista-abonado-blanco-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\mas-verde-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\menos-rojo-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\buscar-negro-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\icons\home-negro-512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

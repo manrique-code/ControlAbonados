@@ -29,9 +29,5 @@ namespace ControlAbonados.Models
         [DataType(DataType.Date)]
         public DateTime FechaNacimiento { get; set; }
 
-        [MaxLength(9)]
-        [Required(AllowEmptyStrings =true)]
-        public string Telefono { get; set; }
-
     }
 }
