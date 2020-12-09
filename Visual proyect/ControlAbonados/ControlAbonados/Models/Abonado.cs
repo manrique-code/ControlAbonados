@@ -25,9 +25,5 @@ namespace ControlAbonados.Models
         [MaxLength(50)]
         public string Apellidos { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime FechaNacimiento { get; set; }
-
     }
 }

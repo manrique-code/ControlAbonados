@@ -26,7 +26,7 @@ namespace ControlAbonados.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MANRIQUE;Initial Catalog=controlAbonados;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=controlAbonados;Integrated Security=True")]
         public string cnnString {
             get {
                 return ((string)(this["cnnString"]));

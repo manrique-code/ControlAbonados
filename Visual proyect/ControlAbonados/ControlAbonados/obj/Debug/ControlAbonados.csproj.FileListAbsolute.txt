@@ -48,3 +48,12 @@ C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proy
 C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\bin\Debug\Bunifu_UI_v1.5.3.dll
 C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Forms.ReportesMenu.resources
 C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.EliminarTelefonoAbonadoMigration.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.cambiarFechaNacTipoMigration.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.fechaNacCambio.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.fechaNacElimMigration.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.QuitarForeignKeysEstadoPegueMigration.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.FechaEstadoPegueMigration.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.EliminarAñoFechaEstadoPegueMigration.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.EliminarAñoFromDBMigration.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.ColumnaAñoMigration.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.CodPegueFechaEstadoPegueMigration.resources

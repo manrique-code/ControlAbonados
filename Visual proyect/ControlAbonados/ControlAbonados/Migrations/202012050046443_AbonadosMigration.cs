@@ -8,7 +8,7 @@ namespace ControlAbonados.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Abonado",
+                "dbo.Abonadoes",
                 c => new
                     {
                         IdAbonado = c.Int(nullable: false, identity: true),

@@ -9,6 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ControlAbonados.Forms;
+using ControlAbonados.Data;
+using ControlAbonados.Models;
 
 namespace ControlAbonados
 {
@@ -19,7 +21,6 @@ namespace ControlAbonados
             InitializeComponent();
             
         }
-
 
         private void iniciarFormularioAbonados()
         {

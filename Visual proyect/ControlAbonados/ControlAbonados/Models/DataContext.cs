@@ -22,8 +22,6 @@
 
         public DbSet<TipoPegue> TipoPegue { get; set; }
 
-        public DbSet<Año> Año { get; set; }
-
         public DbSet<Mes> Mes { get; set; }
 
         public DbSet<EstadoPegue> EstadoPegue { get; set; }
@@ -31,6 +29,8 @@
        public DbSet<Pegue> Pegue { get; set; }
 
        public DbSet<ControlPago> ControlPago { get; set; }
+
+       public DbSet<FechaEstadoPegue> FechaEstadoPegues { get; set; }
 
     }
 }

@@ -140,16 +140,52 @@
     <Compile Include="Migrations\202012071126319_EliminarTelefonoAbonadoMigration.Designer.cs">
       <DependentUpon>202012071126319_EliminarTelefonoAbonadoMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012072142285_cambiarFechaNacTipoMigration.cs" />
+    <Compile Include="Migrations\202012072142285_cambiarFechaNacTipoMigration.Designer.cs">
+      <DependentUpon>202012072142285_cambiarFechaNacTipoMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012072148212_fechaNacCambio.cs" />
+    <Compile Include="Migrations\202012072148212_fechaNacCambio.Designer.cs">
+      <DependentUpon>202012072148212_fechaNacCambio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012072149396_fechaNacElimMigration.cs" />
+    <Compile Include="Migrations\202012072149396_fechaNacElimMigration.Designer.cs">
+      <DependentUpon>202012072149396_fechaNacElimMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012080630457_QuitarForeignKeysEstadoPegueMigration.cs" />
+    <Compile Include="Migrations\202012080630457_QuitarForeignKeysEstadoPegueMigration.Designer.cs">
+      <DependentUpon>202012080630457_QuitarForeignKeysEstadoPegueMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012080645156_FechaEstadoPegueMigration.cs" />
+    <Compile Include="Migrations\202012080645156_FechaEstadoPegueMigration.Designer.cs">
+      <DependentUpon>202012080645156_FechaEstadoPegueMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012080652032_EliminarAñoFechaEstadoPegueMigration.cs" />
+    <Compile Include="Migrations\202012080652032_EliminarAñoFechaEstadoPegueMigration.Designer.cs">
+      <DependentUpon>202012080652032_EliminarAñoFechaEstadoPegueMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012080654195_EliminarAñoFromDBMigration.cs" />
+    <Compile Include="Migrations\202012080654195_EliminarAñoFromDBMigration.Designer.cs">
+      <DependentUpon>202012080654195_EliminarAñoFromDBMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012080656163_ColumnaAñoMigration.cs" />
+    <Compile Include="Migrations\202012080656163_ColumnaAñoMigration.Designer.cs">
+      <DependentUpon>202012080656163_ColumnaAñoMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012091008342_CodPegueFechaEstadoPegueMigration.cs" />
+    <Compile Include="Migrations\202012091008342_CodPegueFechaEstadoPegueMigration.Designer.cs">
+      <DependentUpon>202012091008342_CodPegueFechaEstadoPegueMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abonado.cs" />
     <Compile Include="Models\Bloque.cs" />
     <Compile Include="Models\ControlPago.cs" />
     <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\EstadoPegue.cs" />
+    <Compile Include="Models\FechaEstadoPegue.cs" />
     <Compile Include="Models\Mes.cs" />
     <Compile Include="Models\Pegue.cs" />
     <Compile Include="Models\TipoPegue.cs" />
-    <Compile Include="Models\Año.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Abonados.resx">
@@ -199,6 +235,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012071126319_EliminarTelefonoAbonadoMigration.resx">
       <DependentUpon>202012071126319_EliminarTelefonoAbonadoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012072142285_cambiarFechaNacTipoMigration.resx">
+      <DependentUpon>202012072142285_cambiarFechaNacTipoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012072148212_fechaNacCambio.resx">
+      <DependentUpon>202012072148212_fechaNacCambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012072149396_fechaNacElimMigration.resx">
+      <DependentUpon>202012072149396_fechaNacElimMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012080630457_QuitarForeignKeysEstadoPegueMigration.resx">
+      <DependentUpon>202012080630457_QuitarForeignKeysEstadoPegueMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012080645156_FechaEstadoPegueMigration.resx">
+      <DependentUpon>202012080645156_FechaEstadoPegueMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012080652032_EliminarAñoFechaEstadoPegueMigration.resx">
+      <DependentUpon>202012080652032_EliminarAñoFechaEstadoPegueMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012080654195_EliminarAñoFromDBMigration.resx">
+      <DependentUpon>202012080654195_EliminarAñoFromDBMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012080656163_ColumnaAñoMigration.resx">
+      <DependentUpon>202012080656163_ColumnaAñoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012091008342_CodPegueFechaEstadoPegueMigration.resx">
+      <DependentUpon>202012091008342_CodPegueFechaEstadoPegueMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
