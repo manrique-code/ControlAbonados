@@ -15,6 +15,7 @@ using CrystalDecisions.CrystalReports.ViewerObjectModel;
 using CrystalDecisions.Windows.Forms;
 using CrystalDecisions.Shared;
 using ControlAbonados.Reportes;
+using System.Threading;
 
 namespace ControlAbonados.Forms
 {
@@ -23,6 +24,13 @@ namespace ControlAbonados.Forms
         public ReportesMenu()
         {
             InitializeComponent();
+        }
+
+        private void irMenu()
+        {
+            Thread c = new Thread(new ThreadStart(() => Application.Run(new Menu())));
+            c.Start();
+            this.Close();
         }
 
         private void ReportesMenu_Load(object sender, EventArgs e)
@@ -62,18 +70,25 @@ namespace ControlAbonados.Forms
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string folderEspecifico = $@"{desktopPath}\\Reportes\\ReporteTodoAbonado.pdf";
 
+            pgbTodoAbonados.Visible = true;
+
             using (ReportDocument oRep = new ReportDocument())
             {
                 using (frmListadoTodoAbonados form = new frmListadoTodoAbonados())
                 {
-                    oRep.Load(@"C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\Reportes\ListadoTodoAbonados.rpt");
+                    pgbTodoAbonados.Value = 25;
+                    oRep.Load($@"{desktopPath}\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\Reportes\ListadoTodoAbonados.rpt");
+                    oRep.Refresh();
                     form.crystalReportViewer1.ReportSource = oRep;
                     form.Show();
                     oRep.ExportToDisk(ExportFormatType.PortableDocFormat, folderEspecifico);
                     form.Close();
+                    pgbTodoAbonados.Value = 65;
                 }
             }
             crearOAbrirFolderReportes();
+            pgbTodoAbonados.Value = 100;
+            pgbTodoAbonados.Visible = false;
         }
 
         private void generarReportesAbonado()
@@ -85,6 +100,11 @@ namespace ControlAbonados.Forms
         {
             generarReporteTodoAbonados();
             //string directorioReporte = $"@{Directory.GetCurrentDirectory()}\\listadoTodoAbonados.rpt";
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            irMenu();
         }
     }
 }

@@ -59,6 +59,9 @@ namespace ControlAbonados
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblPorcentajeAbonadosPago = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.lblTotalAbonados = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.pnlAbonados.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -67,6 +70,7 @@ namespace ControlAbonados
             // pnlAbonados
             // 
             this.pnlAbonados.BackColor = System.Drawing.Color.White;
+            this.pnlAbonados.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlAbonados.Controls.Add(this.btnAbonado);
             this.pnlAbonados.Controls.Add(this.label1);
             this.pnlAbonados.Controls.Add(this.lblAbonados);
@@ -85,7 +89,7 @@ namespace ControlAbonados
             this.btnAbonado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAbonado.Font = new System.Drawing.Font("Product Sans Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAbonado.ForeColor = System.Drawing.Color.White;
-            this.btnAbonado.Location = new System.Drawing.Point(150, 130);
+            this.btnAbonado.Location = new System.Drawing.Point(148, 128);
             this.btnAbonado.Name = "btnAbonado";
             this.btnAbonado.Size = new System.Drawing.Size(130, 50);
             this.btnAbonado.TabIndex = 2;
@@ -139,6 +143,7 @@ namespace ControlAbonados
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnReportes);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.lblReportes);
@@ -156,7 +161,7 @@ namespace ControlAbonados
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportes.Font = new System.Drawing.Font("Product Sans Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.ForeColor = System.Drawing.Color.White;
-            this.btnReportes.Location = new System.Drawing.Point(150, 130);
+            this.btnReportes.Location = new System.Drawing.Point(148, 128);
             this.btnReportes.Name = "btnReportes";
             this.btnReportes.Size = new System.Drawing.Size(130, 50);
             this.btnReportes.TabIndex = 2;
@@ -201,6 +206,10 @@ namespace ControlAbonados
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.lblTotalAbonados);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.panel8);
             this.panel2.Controls.Add(this.lblAbonadosCisterna);
             this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.panel7);
@@ -230,7 +239,7 @@ namespace ControlAbonados
             this.lblAbonadosCisterna.AutoSize = true;
             this.lblAbonadosCisterna.Font = new System.Drawing.Font("Product Sans Medium", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAbonadosCisterna.ForeColor = System.Drawing.Color.Black;
-            this.lblAbonadosCisterna.Location = new System.Drawing.Point(1027, 70);
+            this.lblAbonadosCisterna.Location = new System.Drawing.Point(1025, 68);
             this.lblAbonadosCisterna.Name = "lblAbonadosCisterna";
             this.lblAbonadosCisterna.Size = new System.Drawing.Size(175, 34);
             this.lblAbonadosCisterna.TabIndex = 16;
@@ -242,7 +251,7 @@ namespace ControlAbonados
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Product Sans Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Gray;
-            this.label14.Location = new System.Drawing.Point(1029, 30);
+            this.label14.Location = new System.Drawing.Point(1027, 28);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(83, 24);
             this.label14.TabIndex = 15;
@@ -252,9 +261,9 @@ namespace ControlAbonados
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel7.BackColor = System.Drawing.Color.Silver;
-            this.panel7.Location = new System.Drawing.Point(1008, 30);
+            this.panel7.Location = new System.Drawing.Point(1007, 30);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1, 85);
+            this.panel7.Size = new System.Drawing.Size(1, 83);
             this.panel7.TabIndex = 7;
             // 
             // lblAbonadosNormales
@@ -264,7 +273,7 @@ namespace ControlAbonados
             this.lblAbonadosNormales.AutoSize = true;
             this.lblAbonadosNormales.Font = new System.Drawing.Font("Product Sans Medium", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAbonadosNormales.ForeColor = System.Drawing.Color.Black;
-            this.lblAbonadosNormales.Location = new System.Drawing.Point(796, 201);
+            this.lblAbonadosNormales.Location = new System.Drawing.Point(794, 201);
             this.lblAbonadosNormales.Name = "lblAbonadosNormales";
             this.lblAbonadosNormales.Size = new System.Drawing.Size(175, 34);
             this.lblAbonadosNormales.TabIndex = 14;
@@ -276,7 +285,7 @@ namespace ControlAbonados
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Product Sans Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Gray;
-            this.label12.Location = new System.Drawing.Point(798, 161);
+            this.label12.Location = new System.Drawing.Point(798, 159);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(90, 24);
             this.label12.TabIndex = 13;
@@ -289,7 +298,7 @@ namespace ControlAbonados
             this.lblAbonadosTercerEdad.AutoSize = true;
             this.lblAbonadosTercerEdad.Font = new System.Drawing.Font("Product Sans Medium", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAbonadosTercerEdad.ForeColor = System.Drawing.Color.Black;
-            this.lblAbonadosTercerEdad.Location = new System.Drawing.Point(796, 70);
+            this.lblAbonadosTercerEdad.Location = new System.Drawing.Point(796, 68);
             this.lblAbonadosTercerEdad.Name = "lblAbonadosTercerEdad";
             this.lblAbonadosTercerEdad.Size = new System.Drawing.Size(175, 34);
             this.lblAbonadosTercerEdad.TabIndex = 12;
@@ -312,18 +321,18 @@ namespace ControlAbonados
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.Color.Silver;
-            this.panel6.Location = new System.Drawing.Point(802, 133);
+            this.panel6.Location = new System.Drawing.Point(802, 132);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(400, 1);
+            this.panel6.Size = new System.Drawing.Size(398, 1);
             this.panel6.TabIndex = 9;
             // 
             // panel5
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel5.BackColor = System.Drawing.Color.Silver;
-            this.panel5.Location = new System.Drawing.Point(754, 23);
+            this.panel5.Location = new System.Drawing.Point(753, 23);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1, 250);
+            this.panel5.Size = new System.Drawing.Size(1, 248);
             this.panel5.TabIndex = 6;
             // 
             // lblAbonadosInactivos
@@ -390,9 +399,9 @@ namespace ControlAbonados
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel3.BackColor = System.Drawing.Color.Silver;
-            this.panel3.Location = new System.Drawing.Point(413, 23);
+            this.panel3.Location = new System.Drawing.Point(412, 23);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1, 250);
+            this.panel3.Size = new System.Drawing.Size(1, 248);
             this.panel3.TabIndex = 5;
             // 
             // progressBar1
@@ -410,7 +419,7 @@ namespace ControlAbonados
             this.lblPorcentajeAbonadosPago.ForeColor = System.Drawing.Color.Black;
             this.lblPorcentajeAbonadosPago.Location = new System.Drawing.Point(28, 101);
             this.lblPorcentajeAbonadosPago.Name = "lblPorcentajeAbonadosPago";
-            this.lblPorcentajeAbonadosPago.Size = new System.Drawing.Size(340, 75);
+            this.lblPorcentajeAbonadosPago.Size = new System.Drawing.Size(338, 75);
             this.lblPorcentajeAbonadosPago.TabIndex = 3;
             this.lblPorcentajeAbonadosPago.Text = "0% de los abonados van al día.";
             // 
@@ -423,6 +432,40 @@ namespace ControlAbonados
             this.label3.Size = new System.Drawing.Size(338, 55);
             this.label3.TabIndex = 2;
             this.label3.Text = "Porcentaje de abonados que van al día.";
+            // 
+            // panel8
+            // 
+            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panel8.BackColor = System.Drawing.Color.Silver;
+            this.panel8.Location = new System.Drawing.Point(1007, 161);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1, 110);
+            this.panel8.TabIndex = 8;
+            // 
+            // lblTotalAbonados
+            // 
+            this.lblTotalAbonados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalAbonados.AutoSize = true;
+            this.lblTotalAbonados.Font = new System.Drawing.Font("Product Sans Medium", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalAbonados.ForeColor = System.Drawing.Color.Black;
+            this.lblTotalAbonados.Location = new System.Drawing.Point(1023, 201);
+            this.lblTotalAbonados.Name = "lblTotalAbonados";
+            this.lblTotalAbonados.Size = new System.Drawing.Size(175, 34);
+            this.lblTotalAbonados.TabIndex = 18;
+            this.lblTotalAbonados.Text = "[0] abonados";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Product Sans Medium", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Gray;
+            this.label6.Location = new System.Drawing.Point(1027, 159);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(164, 24);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Total de abonados";
             // 
             // Menu
             // 
@@ -486,6 +529,9 @@ namespace ControlAbonados
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lblPorcentajeAbonadosPago;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTotalAbonados;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel8;
     }
 }
 

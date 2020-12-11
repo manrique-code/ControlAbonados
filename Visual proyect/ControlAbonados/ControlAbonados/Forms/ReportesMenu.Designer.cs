@@ -49,6 +49,10 @@ namespace ControlAbonados.Forms
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pgbTodoAbonados = new System.Windows.Forms.ProgressBar();
+            this.pgbAbonadosActivos = new System.Windows.Forms.ProgressBar();
+            this.pgbMes = new System.Windows.Forms.ProgressBar();
+            this.pgbEstado = new System.Windows.Forms.ProgressBar();
             this.pnlAbonados.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -59,6 +63,7 @@ namespace ControlAbonados.Forms
             // pnlAbonados
             // 
             this.pnlAbonados.BackColor = System.Drawing.Color.White;
+            this.pnlAbonados.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlAbonados.Controls.Add(this.btnAbonado);
             this.pnlAbonados.Controls.Add(this.label1);
             this.pnlAbonados.Controls.Add(this.lblAbonados);
@@ -76,7 +81,7 @@ namespace ControlAbonados.Forms
             this.btnAbonado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAbonado.Font = new System.Drawing.Font("Product Sans Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAbonado.ForeColor = System.Drawing.Color.White;
-            this.btnAbonado.Location = new System.Drawing.Point(150, 130);
+            this.btnAbonado.Location = new System.Drawing.Point(148, 128);
             this.btnAbonado.Name = "btnAbonado";
             this.btnAbonado.Size = new System.Drawing.Size(130, 50);
             this.btnAbonado.TabIndex = 2;
@@ -118,6 +123,7 @@ namespace ControlAbonados.Forms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
@@ -135,7 +141,7 @@ namespace ControlAbonados.Forms
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Product Sans Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(150, 130);
+            this.button1.Location = new System.Drawing.Point(148, 128);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 50);
             this.button1.TabIndex = 2;
@@ -167,6 +173,7 @@ namespace ControlAbonados.Forms
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.cboMes);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.label4);
@@ -197,7 +204,7 @@ namespace ControlAbonados.Forms
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Product Sans Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(150, 130);
+            this.button2.Location = new System.Drawing.Point(148, 128);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(130, 50);
             this.button2.TabIndex = 2;
@@ -229,6 +236,7 @@ namespace ControlAbonados.Forms
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.cboEstado);
             this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.label6);
@@ -259,7 +267,7 @@ namespace ControlAbonados.Forms
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Product Sans Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(150, 130);
+            this.button3.Location = new System.Drawing.Point(148, 128);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(130, 50);
             this.button3.TabIndex = 2;
@@ -292,12 +300,45 @@ namespace ControlAbonados.Forms
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::ControlAbonados.Properties.Resources.home_negro_512;
-            this.pictureBox1.Location = new System.Drawing.Point(1210, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(1279, 26);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(40, 40);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pgbTodoAbonados
+            // 
+            this.pgbTodoAbonados.Location = new System.Drawing.Point(38, 295);
+            this.pgbTodoAbonados.Name = "pgbTodoAbonados";
+            this.pgbTodoAbonados.Size = new System.Drawing.Size(300, 24);
+            this.pgbTodoAbonados.TabIndex = 9;
+            this.pgbTodoAbonados.Visible = false;
+            // 
+            // pgbAbonadosActivos
+            // 
+            this.pgbAbonadosActivos.Location = new System.Drawing.Point(365, 295);
+            this.pgbAbonadosActivos.Name = "pgbAbonadosActivos";
+            this.pgbAbonadosActivos.Size = new System.Drawing.Size(300, 24);
+            this.pgbAbonadosActivos.TabIndex = 10;
+            this.pgbAbonadosActivos.Visible = false;
+            // 
+            // pgbMes
+            // 
+            this.pgbMes.Location = new System.Drawing.Point(692, 295);
+            this.pgbMes.Name = "pgbMes";
+            this.pgbMes.Size = new System.Drawing.Size(300, 24);
+            this.pgbMes.TabIndex = 11;
+            this.pgbMes.Visible = false;
+            // 
+            // pgbEstado
+            // 
+            this.pgbEstado.Location = new System.Drawing.Point(1019, 295);
+            this.pgbEstado.Name = "pgbEstado";
+            this.pgbEstado.Size = new System.Drawing.Size(300, 24);
+            this.pgbEstado.TabIndex = 12;
+            this.pgbEstado.Visible = false;
             // 
             // ReportesMenu
             // 
@@ -305,6 +346,10 @@ namespace ControlAbonados.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.pgbEstado);
+            this.Controls.Add(this.pgbMes);
+            this.Controls.Add(this.pgbAbonadosActivos);
+            this.Controls.Add(this.pgbTodoAbonados);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel2);
@@ -312,6 +357,7 @@ namespace ControlAbonados.Forms
             this.Controls.Add(this.lblTituloAbonados);
             this.Controls.Add(this.pnlAbonados);
             this.Name = "ReportesMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReportesMenu";
             this.Load += new System.EventHandler(this.ReportesMenu_Load);
             this.pnlAbonados.ResumeLayout(false);
@@ -350,5 +396,9 @@ namespace ControlAbonados.Forms
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboMes;
         private System.Windows.Forms.ComboBox cboEstado;
+        private System.Windows.Forms.ProgressBar pgbTodoAbonados;
+        private System.Windows.Forms.ProgressBar pgbAbonadosActivos;
+        private System.Windows.Forms.ProgressBar pgbMes;
+        private System.Windows.Forms.ProgressBar pgbEstado;
     }
 }
