@@ -33,5 +33,8 @@ namespace ControlAbonados.Models
         [MaxLength(3)]
         public string NumCasa { get; set; } 
 
+        [DataType(DataType.MultilineText)]
+        public string Nota { get; set; }
+
     }
 }

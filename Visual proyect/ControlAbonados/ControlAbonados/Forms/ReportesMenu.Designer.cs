@@ -39,21 +39,21 @@ namespace ControlAbonados.Forms
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cboMes = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cboEstado = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.cboMes = new System.Windows.Forms.ComboBox();
-            this.cboEstado = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlAbonados.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlAbonados
@@ -82,6 +82,7 @@ namespace ControlAbonados.Forms
             this.btnAbonado.TabIndex = 2;
             this.btnAbonado.Text = "Generar";
             this.btnAbonado.UseVisualStyleBackColor = false;
+            this.btnAbonado.Click += new System.EventHandler(this.btnAbonado_Click);
             // 
             // label1
             // 
@@ -176,6 +177,18 @@ namespace ControlAbonados.Forms
             this.panel2.Size = new System.Drawing.Size(300, 200);
             this.panel2.TabIndex = 7;
             // 
+            // cboMes
+            // 
+            this.cboMes.BackColor = System.Drawing.Color.White;
+            this.cboMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboMes.Font = new System.Drawing.Font("Product Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMes.FormattingEnabled = true;
+            this.cboMes.Location = new System.Drawing.Point(26, 90);
+            this.cboMes.Name = "cboMes";
+            this.cboMes.Size = new System.Drawing.Size(254, 29);
+            this.cboMes.TabIndex = 9;
+            // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -213,17 +226,6 @@ namespace ControlAbonados.Forms
             this.label5.TabIndex = 0;
             this.label5.Text = "Reporte mes";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::ControlAbonados.Properties.Resources.home_negro_512;
-            this.pictureBox1.Location = new System.Drawing.Point(1210, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
@@ -236,6 +238,18 @@ namespace ControlAbonados.Forms
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(300, 200);
             this.panel3.TabIndex = 8;
+            // 
+            // cboEstado
+            // 
+            this.cboEstado.BackColor = System.Drawing.Color.White;
+            this.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboEstado.Font = new System.Drawing.Font("Product Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEstado.FormattingEnabled = true;
+            this.cboEstado.Location = new System.Drawing.Point(23, 86);
+            this.cboEstado.Name = "cboEstado";
+            this.cboEstado.Size = new System.Drawing.Size(254, 29);
+            this.cboEstado.TabIndex = 10;
             // 
             // button3
             // 
@@ -274,29 +288,16 @@ namespace ControlAbonados.Forms
             this.label7.TabIndex = 0;
             this.label7.Text = "Reporte estado";
             // 
-            // cboMes
+            // pictureBox1
             // 
-            this.cboMes.BackColor = System.Drawing.Color.White;
-            this.cboMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboMes.Font = new System.Drawing.Font("Product Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboMes.FormattingEnabled = true;
-            this.cboMes.Location = new System.Drawing.Point(26, 90);
-            this.cboMes.Name = "cboMes";
-            this.cboMes.Size = new System.Drawing.Size(254, 29);
-            this.cboMes.TabIndex = 9;
-            // 
-            // cboEstado
-            // 
-            this.cboEstado.BackColor = System.Drawing.Color.White;
-            this.cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboEstado.Font = new System.Drawing.Font("Product Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboEstado.FormattingEnabled = true;
-            this.cboEstado.Location = new System.Drawing.Point(23, 86);
-            this.cboEstado.Name = "cboEstado";
-            this.cboEstado.Size = new System.Drawing.Size(254, 29);
-            this.cboEstado.TabIndex = 10;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::ControlAbonados.Properties.Resources.home_negro_512;
+            this.pictureBox1.Location = new System.Drawing.Point(1210, 26);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
             // 
             // ReportesMenu
             // 
@@ -319,9 +320,9 @@ namespace ControlAbonados.Forms
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

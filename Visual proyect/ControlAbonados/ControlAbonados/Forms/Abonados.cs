@@ -22,7 +22,7 @@ namespace ControlAbonados.Forms
         Color nombresColor;
 
         int cantPegues = 0;
-        int numeroPegueActual = 1;
+        int numeroPegueActual = 0;
 
         public Abonados()
         {
@@ -81,13 +81,234 @@ namespace ControlAbonados.Forms
                 return false;
             }
 
-            if (lsbMeses.Items.Count == 0)
+            /*if (lsbMeses.Items.Count == 0)
             {
                 errorAbonado.SetIconPadding(lblMesesPagados, 3);
                 errorAbonado.SetError(lblMesesPagados, "Ingrese un bloque correcto");
                 return false;
-            }
+            }*/
             return true;
+        }
+
+        private void guardaPegueEditado()
+        {
+            string[] fechaEstadoPegue;
+
+            string nombres = txtNombreTab2.Text;
+            string apellidos = txtApellidosTab2.Text;
+            string numIdentidad = txtNumeroIdentidadTab2.Text;
+            string bloque = numBloque.Value.ToString();
+            string casa = numCasa.Value.ToString();
+            string tipoPegueNombre = cboTipoPegue.Text;
+            int tipoPegueID = cboTipoPegue.SelectedIndex + 1;
+            string estadoPegueNombre = cboEstado.Text;
+            int estadoPegueID = cboEstado.SelectedIndex + 1;
+            int cantidadMesesPagados = Convert.ToInt32(lblCantMesesPagados.Text);
+            string codPegue = lblCodPegue.Text;
+            int abonadoId = Convert.ToInt32(lblIdAbonado.Text);
+            string nota = txtNota.Text;
+
+            string mesEstado;
+            string yearEstado;
+            int mesEstadoID;
+
+
+            pgbPorcentajeAlmacenado.Enabled = true;
+            pgbPorcentajeAlmacenado.Visible = true;
+            pgbPorcentajeAlmacenado.Value = 25;
+            
+
+            string numeroIdentidad = DataAbonadoAccess.obtenerNumIdentidadByID(abonadoId);
+            int idTipoPegue = DataAbonadoAccess.obtenerTipoPegueIDPorNombre(tipoPegueNombre);
+            int idEstadoPegue = DataAbonadoAccess.obtenerEstadoPegueIDPorNombre(estadoPegueNombre);
+            bool tieneFechaEstadoPegue = DataAbonadoAccess.existeFechaEstadoPegue(codPegue);
+
+            if (tieneFechaEstadoPegue)
+            {
+                fechaEstadoPegue = DataAbonadoAccess.obtenerMesDeFechaControlPegue(codPegue);
+                mesEstado = cboMesEstado.Text;
+                yearEstado = numYearEstado.Value.ToString();
+                mesEstadoID = cboMesEstado.SelectedIndex + 1;
+
+                pgbPorcentajeAlmacenado.Value = 50;
+                
+                if(Convert.ToInt32(fechaEstadoPegue[4]) != estadoPegueID)
+                {
+                    if(estadoPegueID == 0)
+                    {
+                        DataAbonadoAccess.eliminarFechaEstadoPegue(codPegue);
+                    } else
+                    {
+                        DataAbonadoAccess.eliminarFechaEstadoPegue(codPegue);
+                        guardarFechaEstadoPegue(estadoPegueID, mesEstadoID, codPegue, yearEstado);
+                    }
+                }
+            } else
+            {
+                mesEstado = cboMesEstado.Text;
+                yearEstado = numYearEstado.Value.ToString();
+                mesEstadoID = cboMesEstado.SelectedIndex + 1;
+                guardarFechaEstadoPegue(estadoPegueID, mesEstadoID, codPegue, yearEstado);
+            }
+
+            
+
+            if(cantidadMesesPagados < lsbMeses.Items.Count)
+            {
+                cantidadMesesPagados = (cantidadMesesPagados == 0) ? 1: cantidadMesesPagados;
+                for(int i = cantidadMesesPagados; i <= lsbMeses.Items.Count; i++)
+                {
+                    guardarControlPago(codPegue, i);
+                }
+                pgbPorcentajeAlmacenado.Value = 75;
+            }
+
+            DataAbonadoAccess.actualizarPegue(codPegue, casa, tipoPegueID, estadoPegueID, Convert.ToInt32(bloque), nota);
+            pgbPorcentajeAlmacenado.Value = 100;
+            
+            pgbPorcentajeAlmacenado.Visible = false;
+            pgbPorcentajeAlmacenado.Value = 0;
+            resetearPegue();
+            resetearAbonadoEnPegue();
+
+            MessageBox.Show($"Pegue de {nombres} {apellidos} actualizado correctamente", "Pegue", MessageBoxButtons.OK);
+
+            seleccionarPanelListados();
+
+        }
+
+        private void eliminarFEP(string codPegue)
+        {
+            bool existeFEP = DataAbonadoAccess.existeFechaEstadoPegue(codPegue);
+            if (existeFEP)
+            {
+                DataAbonadoAccess.eliminarFechaEstadoPegue(codPegue);
+            }
+        }
+
+        /*
+         * funcion que añade meses de pago a un pegue
+         */
+        private void addMesPago(string codPegue)
+        {
+            int ultimoMesPago = DataAbonadoAccess.obtenerUltimoMesPagado(codPegue);
+
+            for(int i = ultimoMesPago; i <= lsbMeses.Items.Count; i++)
+            {
+                guardarControlPago(codPegue, i);
+            }
+        }
+
+        /*
+         * mueve los datos de la tabla de listado al tab de pegues
+         */
+        private void moverPegueAEdicion() {
+            string[] meses = {
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
+            };
+            string[] fechaEstadoPegue;
+
+            string tipoPegue = dgvListados.CurrentRow.Cells[3].Value.ToString();
+            string bloque = dgvListados.CurrentRow.Cells[4].Value.ToString();
+            string casa = dgvListados.CurrentRow.Cells[5].Value.ToString();
+            string estadoPegue = dgvListados.CurrentRow.Cells[6].Value.ToString();
+            int cantidadMesesPagados = Convert.ToInt32(dgvListados.CurrentRow.Cells[7].Value);
+            int idAbonado = Convert.ToInt32(dgvListados.CurrentRow.Cells[0].Value);
+            string nombre = dgvListados.CurrentRow.Cells[1].Value.ToString();
+            string apellido = dgvListados.CurrentRow.Cells[2].Value.ToString();
+
+            string numeroIdentidad = DataAbonadoAccess.obtenerNumIdentidadByID(idAbonado);
+            int idTipoPegue = DataAbonadoAccess.obtenerTipoPegueIDPorNombre(tipoPegue);
+            int idEstadoPegue = DataAbonadoAccess.obtenerEstadoPegueIDPorNombre(estadoPegue);
+            string codiPegue = DataAbonadoAccess.obtenerCodigoPegueByPegue(bloque, casa);
+            bool tieneFechaEstadoPegue = DataAbonadoAccess.existeFechaEstadoPegue(codiPegue);
+
+            string notas = dgvListados.CurrentRow.Cells[8].Value.ToString();
+
+
+            if (tieneFechaEstadoPegue)
+            {
+                fechaEstadoPegue = DataAbonadoAccess.obtenerMesDeFechaControlPegue(codiPegue);
+                //if()
+                cboMesEstado.SelectedIndex = Convert.ToInt32(fechaEstadoPegue[0])-1;
+                numYearEstado.Value = Convert.ToInt32(fechaEstadoPegue[2]);
+            }
+
+            lblCantMesesPagados.Text = cantidadMesesPagados.ToString();
+            numBloque.Value = Convert.ToInt32(bloque);
+            numCasa.Value = Convert.ToInt32(casa);
+            cboTipoPegue.SelectedIndex = idTipoPegue-1;
+            cboEstado.SelectedIndex = idEstadoPegue-1;
+            DataAbonadoAccess.excluirMes(cboMes, cantidadMesesPagados);
+            lblCodPegue.Text = codiPegue;
+            txtNombreTab2.Text = nombre;
+            txtApellidosTab2.Text = apellido;
+            txtNumeroIdentidadTab2.Text = numeroIdentidad;
+            lblIdAbonado.Text = idAbonado.ToString();
+            txtNota.Text = notas;
+            lblCantPegues.Text = $"Modificando pegue";
+            lblTitulo.Text = "Modificando el pegue de:";
+
+            for(int i = 0; i < cantidadMesesPagados; i++)
+            {
+                lsbMeses.Items.Add(meses[i]);
+            }
+
+            btnSiguientePegue.Enabled = false;
+            btnSiguientePegue.Visible = false;
+            btnGuardarPegue.Enabled = true;
+            btnGuardarPegue.Visible = true;
+
+            seleccionarPanelPegues();
+        }
+
+        /*
+         * funcion para mover los datos desde la datagridview hasta el tab de abonados
+         */
+        private bool moverAbonadosAEdicion()
+        {
+            int idAbonado = Convert.ToInt32(dgvListados.CurrentRow.Cells[0].Value);
+            string nombre = dgvListados.CurrentRow.Cells[1].Value.ToString();
+            string apellido = dgvListados.CurrentRow.Cells[2].Value.ToString();
+            string numeroIdentidad = DataAbonadoAccess.obtenerNumIdentidadByID(idAbonado);
+
+            numCantPegues.Enabled = false;
+
+            lblIdAbonadoEdicion.Text = idAbonado.ToString();
+            txtNombres.Text = nombre;
+            txtApellidos.Text = apellido;
+            mTxtNumIdentidad.Text = numeroIdentidad;
+            btnGuardarAbonado.Enabled = false;
+            btnGuardarAbonado.Visible = false;
+            btnGuardarAbonadoEditado.Visible = true;
+
+            seleccionarPanelAbonado();
+            return true;
+        }
+
+
+        /*
+         * funcion para obtener editar un abonado
+         */
+        private void guardarAbonadoEditado()
+        {
+            string nombre = txtNombres.Text;
+            int idAbonado = Convert.ToInt32(lblIdAbonadoEdicion.Text);
+            string apellido = txtApellidos.Text;
+            string numeroIdentidad = (mTxtNumIdentidad.Text == "    -    -") ? "": mTxtNumIdentidad.Text;
+
+            DataAbonadoAccess.actualizarAbonado(idAbonado, nombre, apellido, numeroIdentidad);
         }
 
         private void habilitarCboBusqueda(bool habilitar, string tipoBusqueda = "")
@@ -176,6 +397,8 @@ namespace ControlAbonados.Forms
                 string nombreAbonado = txtNombreTab2.Text;
                 string apellidoAbonado = txtApellidosTab2.Text;
 
+                string nota = txtNota.Text;
+
                 int indiceCboEstadoPegue = cboEstado.SelectedIndex;
 
                 pgbPorcentajeAlmacenado.Visible = true;
@@ -194,14 +417,19 @@ namespace ControlAbonados.Forms
                         tipoPegue,
                         estado,
                         bloque,
-                        casa);
+                        casa,
+                        nota);
                     pgbPorcentajeAlmacenado.Value = 50;
 
-                    // insertar control pago
-                    for (int i = 0; i < cantMesesPagados; i++)
+                    if(cantMesesPagados != 0)
                     {
-                        guardarControlPago(codPegue, i + 1);
-                    }
+                        for (int i = 0; i < cantMesesPagados; i++)
+                        {
+                            guardarControlPago(codPegue, i + 1);
+                        }
+                    } 
+                    
+                    guardarFechaEstadoPegue(estado, 13, codPegue, "2000");
                     pgbPorcentajeAlmacenado.Value = 75;
                 }
                 else
@@ -212,17 +440,16 @@ namespace ControlAbonados.Forms
                         tipoPegue,
                         estado,
                         bloque,
-                        casa);
+                        casa,
+                        nota);
                     pgbPorcentajeAlmacenado.Value = 25;
 
 
-                    for (int i = 0; i < cantMesesPagados; i++)
-                    {
-                        guardarControlPago(codPegue, i + 1);
-                    }
+                    //guardarControlPago(codPegue, 13);
+                    
                     pgbPorcentajeAlmacenado.Value = 50;
 
-                    guardarFechaEstadoPegue(tipoPegue, mesEstado, codPegue, año);
+                    guardarFechaEstadoPegue(estado, mesEstado, codPegue, año);
                     pgbPorcentajeAlmacenado.Value = 75;
                 }
 
@@ -233,17 +460,26 @@ namespace ControlAbonados.Forms
                 numeroPegueActual++;
                 numBloque.Focus();
                 pgbPorcentajeAlmacenado.Visible = false;
-                pgbPorcentajeAlmacenado.Value = 0;
+                pgbPorcentajeAlmacenado.Value = 0;                
 
                 if(numeroPegueActual == cantidadPegues)
                 {
+                    resetearPegue();
+                    resetearAbonadoEnPegue();
+                    DataAbonadoAccess.cargarTablaListados(dgvListados);
+                    MessageBox.Show($"Pegues de {nombreAbonado} {apellidoAbonado} guardados correctamente.", "Pegues", MessageBoxButtons.OK);
                     numeroPegueActual = 1;
                     regresarASolicitarAbonado();
+                    
                 }
 
             }            
             
         }
+
+        /*
+         * 
+         */
 
         /*
          * funcion para guardar los controles de pago
@@ -384,7 +620,8 @@ namespace ControlAbonados.Forms
             int estadoPegueId,
             // IdBloque
             int bloqueId,
-            string casa
+            string casa,
+            string nota = ""
             )
         {
             Pegue pegue = new Pegue
@@ -394,7 +631,8 @@ namespace ControlAbonados.Forms
                 IdTipoPegue = tipoPegueId,
                 IdEstadoPegue = estadoPegueId,
                 IdBloque = bloqueId,
-                NumCasa = casa
+                NumCasa = casa,
+                Nota = nota
             };
             DataAbonadoAccess.insertarPegue(pegue);
         }
@@ -444,6 +682,18 @@ namespace ControlAbonados.Forms
         /* -------------------- Interfaz --------------------*/
 
         /*
+         * funcion para resetear la info de abonado en el tab de pegues
+         */
+        public void resetearAbonadoEnPegue()
+        {
+            lblIdAbonado.Text = "";
+            lblCantidadPegues.Text = "";
+            txtNombreTab2.Text = "";
+            txtApellidosTab2.Text = "";
+            txtNumeroIdentidadTab2.Text = "";
+        }
+
+        /*
          * Funcion para resetear los controles del pegue
          */
         public void resetearPegue()
@@ -453,8 +703,7 @@ namespace ControlAbonados.Forms
             DataAbonadoAccess.obtenerTipoPegues(cboTipoPegue);
             DataAbonadoAccess.obtenerEstadoPegues(cboEstado);
             DataAbonadoAccess.obtenerMeses(cboMes);
-            lsbMeses.Items.Clear();
-            lblMesesPagados.Text = "Meses pagados";
+            txtNota.Text = "";
         }
 
         /*
@@ -522,13 +771,21 @@ namespace ControlAbonados.Forms
          */
         private void seleccionarPanelPegues()
         {
-            tabAbonados.SelectedIndex = 1;
-            pnlPegues.BackColor = Color.FromArgb(1, 42, 70);
-            pnlMenu.BackColor = Color.FromArgb(7, 67, 106);
-            pnlListados.BackColor = Color.FromArgb(7, 67, 106);
-            pnlAbonados.BackColor = Color.FromArgb(7, 67, 106);
-            _drawborderAbonado = false;
-            
+            try
+            {
+                tabAbonados.SelectedIndex = 1;
+                pnlPegues.BackColor = Color.FromArgb(1, 42, 70);
+                pnlMenu.BackColor = Color.FromArgb(7, 67, 106);
+                pnlListados.BackColor = Color.FromArgb(7, 67, 106);
+                pnlAbonados.BackColor = Color.FromArgb(7, 67, 106);
+                _drawborderAbonado = false;
+                dgvBloqueCasa.Rows.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}. \n Intentelos mas tarde");
+            }
+
         }
 
         /*
@@ -553,6 +810,8 @@ namespace ControlAbonados.Forms
             pnlMenu.BackColor = Color.FromArgb(7, 67, 106);
             pnlPegues.BackColor = Color.FromArgb(7, 67, 106);
             pnlAbonados.BackColor = Color.FromArgb(7, 67, 106);
+            DataAbonadoAccess.cargarTablaListados(dgvListados, "Nombre");
+            txtBusqueda.Focus();
         }
 
         /* -------------------- UX -------------------- */
@@ -620,6 +879,7 @@ namespace ControlAbonados.Forms
             DataAbonadoAccess.obtenerTipoPegues(cboTipoPegue);
             DataAbonadoAccess.obtenerMeses(cboMes);
             DataAbonadoAccess.obtenerEstadoPegues(cboEstado);
+            DataAbonadoAccess.obtenerMeses(cboMesEstado);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -644,7 +904,7 @@ namespace ControlAbonados.Forms
         {
             if (validarAbonados())
             {
-                string numIdentidad = mTxtNumIdentidad.Text;
+                string numIdentidad = (mTxtNumIdentidad.Text == "    -    -")? "" : mTxtNumIdentidad.Text;
                 string nombres = txtNombres.Text;
                 string apellidos = txtApellidos.Text;
 
@@ -654,6 +914,7 @@ namespace ControlAbonados.Forms
                 seleccionarPanelPegues();
                 int idAbonado = guardarAbonado(numIdentidad, nombres, apellidos);
                 lblCantidadPegues.Text = numCantPegues.Value.ToString();
+                lblCantPegues.Text = $"Registrando pegue {numeroPegueActual + 1} de {numCantPegues.Value.ToString()}";
                 lblIdAbonado.Text = idAbonado.ToString();
                 resetearAbonado();
             }
@@ -706,18 +967,69 @@ namespace ControlAbonados.Forms
         private void cboEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
             int indiceCboEstado = cboEstado.SelectedIndex;
+            int cantidadMesesPagados = (lblCantMesesPagados.Text == "Nombres") ? 0 : Convert.ToInt32(lblCantMesesPagados.Text);
+            string[] meses = {
+                "Enero",
+                "Febrero",
+                "Marzo",
+                "Abril",
+                "Mayo",
+                "Junio",
+                "Julio",
+                "Agosto",
+                "Septiembre",
+                "Octubre",
+                "Noviembre",
+                "Diciembre"
+            };
 
-            if(indiceCboEstado > 0)
+            if (indiceCboEstado > 0)
             {
                 lblEstado.Visible = true;
                 habilitarMesYearEstado(true);
                 lblEstado.Text = $"{cboEstado.Text} desde: ";
+                lsbMeses.Items.Clear();
+                cboMes.Enabled = false;
+                //lsbMeses.Items.Add("");
+                lsbMeses.Enabled = false;
+                btnAddMes.Visible = false;
+                btnQuitarMes.Visible = false;
                 DataAbonadoAccess.obtenerMeses(cboMesEstado);
             } else
             {
-                lblEstado.Text = "";
-                lblEstado.Visible = false;
-                habilitarMesYearEstado(false);
+                if(Convert.ToInt32(cantidadMesesPagados) > 0)
+                {
+                    DataAbonadoAccess.obtenerMeses(cboMes);
+                    lblEstado.Text = "";
+                    lblEstado.Visible = false;
+                    habilitarMesYearEstado(false);
+                    cboMes.Enabled = true;
+                    cboMes.SelectedIndex = 0;
+                    lsbMeses.Items.Clear();
+                    lsbMeses.Enabled = true;
+                    btnAddMes.Visible = true;
+                    btnQuitarMes.Visible = true;
+                    lblMesesPagados.Text = "Meses pagados";
+                    DataAbonadoAccess.excluirMes(cboMes, cantidadMesesPagados);
+                    for (int i = 0; i < cantidadMesesPagados; i++)
+                    {
+                        lsbMeses.Items.Add(meses[i]);
+                    }
+                } else
+                {
+                    DataAbonadoAccess.obtenerMeses(cboMes);
+                    lblEstado.Text = "";
+                    lblEstado.Visible = false;
+                    habilitarMesYearEstado(false);
+                    cboMes.Enabled = true;
+                    cboMes.SelectedIndex = 0;
+                    lsbMeses.Items.Clear();
+                    lsbMeses.Enabled = true;
+                    btnAddMes.Visible = true;
+                    btnQuitarMes.Visible = true;
+                    lblMesesPagados.Text = "Meses pagados";
+                }
+
             }
 
         }
@@ -734,18 +1046,13 @@ namespace ControlAbonados.Forms
 
         private void cboTipoBusqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboTipoBusqueda.SelectedIndex == 0)
-            {
-                lblCancelarFiltro.Visible = false;
-                DataAbonadoAccess.cargarTablaListados(dgvListados);
-                habilitarControlesBusqueda(false);
-            } else if(cboTipoBusqueda.SelectedIndex == 4)
+            if(cboTipoBusqueda.SelectedIndex == 3)
             {
                 lblCancelarFiltro.Visible = true;
                 habilitarCboBusqueda(true, cboTipoBusqueda.Text);
                 txtBusqueda.Text = "";
                 txtBusqueda.Focus();
-            } else if (cboTipoBusqueda.SelectedIndex == 5)
+            } else if (cboTipoBusqueda.SelectedIndex == 4)
             {
                 lblCancelarFiltro.Visible = true;
                 habilitarCboBusqueda(true, cboTipoBusqueda.Text);
@@ -768,9 +1075,85 @@ namespace ControlAbonados.Forms
         private void lblCancelarFiltro_Click(object sender, EventArgs e)
         {
             cboTipoBusqueda.SelectedIndex = 0;
-            DataAbonadoAccess.cargarTablaListados(dgvListados);
-            habilitarControlesBusqueda(false);
+            DataAbonadoAccess.cargarTablaListados(dgvListados, "Nombre");
             lblCancelarFiltro.Visible = false;
+        }
+
+        private void btnEditarAbonado_Click(object sender, EventArgs e)
+        {
+
+            
+            moverAbonadosAEdicion();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (validarAbonados())
+            {
+                DialogResult r = MessageBox.Show("¿Desea cancelar la edición? \nLa información no será guardada", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (r == DialogResult.Yes)
+                {
+                    resetearAbonado();
+                    if (btnGuardarAbonadoEditado.Visible)
+                    {
+                        btnGuardarAbonadoEditado.Visible = false;
+                        btnGuardarAbonado.Enabled = true;
+                        btnGuardarAbonado.Visible = true;
+                    }
+                    abrirMenu();
+                }
+            } else
+            {
+                abrirMenu();
+            }        
+                        
+        }
+
+
+        private void btnGuardarAbonadoEditado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                guardarAbonadoEditado();
+                resetearAbonado();
+
+                btnGuardarAbonadoEditado.Enabled = false;
+                btnGuardarAbonadoEditado.Visible = false;
+
+                btnGuardarAbonado.Enabled = true;
+                btnGuardarAbonado.Visible = true;
+
+                numCantPegues.Enabled = true;
+            } catch(Exception ex)
+            {
+                MessageBox.Show($"Al parecer ocurrio un error, intentelo más tarde.\n {ex.Message}");
+            }
+        }
+
+        private void btnEditarPegue_Click(object sender, EventArgs e)
+        {
+            moverPegueAEdicion();
+        }
+
+        private void btnGuardarPegue_Click(object sender, EventArgs e)
+        {
+            
+                if (validarPegue())
+                {
+                    guardaPegueEditado();
+                    resetearPegue();
+
+                    btnGuardarPegue.Enabled = false;
+                    btnGuardarPegue.Visible = false;
+
+                    btnSiguientePegue.Enabled = true;
+                    btnSiguientePegue.Visible = true;
+
+                    lblCantPegues.Text = "Registrando pegue 0 de 0";
+                    lblTitulo.Text = "Registrando pegue a:";
+                }
+            
+
         }
     }
 }

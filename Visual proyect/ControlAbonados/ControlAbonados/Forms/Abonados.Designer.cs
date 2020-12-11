@@ -30,9 +30,9 @@ namespace ControlAbonados.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            BunifuAnimatorNS.Animation animation3 = new BunifuAnimatorNS.Animation();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Abonados));
             this.pnlSideBar = new System.Windows.Forms.Panel();
             this.pnlListados = new System.Windows.Forms.Panel();
@@ -46,6 +46,9 @@ namespace ControlAbonados.Forms
             this.lblAbonados = new System.Windows.Forms.Label();
             this.tabAbonados = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblIdAbonadoEdicion = new System.Windows.Forms.Label();
+            this.btnGuardarAbonadoEditado = new System.Windows.Forms.Button();
             this.lblNombreCant = new System.Windows.Forms.Label();
             this.btnGuardarAbonado = new System.Windows.Forms.Button();
             this.pnlCantPegues = new System.Windows.Forms.Panel();
@@ -63,6 +66,8 @@ namespace ControlAbonados.Forms
             this.label4 = new System.Windows.Forms.Label();
             this.lblTituloAbonados = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblCodPegue = new System.Windows.Forms.Label();
+            this.lblCantidadPegues = new System.Windows.Forms.Label();
             this.lblIdAbonado = new System.Windows.Forms.Label();
             this.lblGuardandoPegue = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -110,17 +115,22 @@ namespace ControlAbonados.Forms
             this.lblTitulo = new System.Windows.Forms.Label();
             this.btnGuardarPegue = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnGenerarReporte = new System.Windows.Forms.Label();
-            this.btnAddAbonado = new System.Windows.Forms.Label();
+            this.lblCancelarFiltro = new System.Windows.Forms.Label();
+            this.cboTipoBusqueda = new System.Windows.Forms.ComboBox();
             this.btnEditarPegue = new System.Windows.Forms.Label();
             this.btnEditarAbonado = new System.Windows.Forms.Label();
             this.dgvListados = new System.Windows.Forms.DataGridView();
             this.pnlBusqueda = new System.Windows.Forms.Panel();
+            this.cboBusquedas = new System.Windows.Forms.ComboBox();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.bunifuTransition1 = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.errorAbonado = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblCantidadPegues = new System.Windows.Forms.Label();
+            this.lblCantMesesPagados = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtNota = new System.Windows.Forms.TextBox();
             this.btnQuitarMes = new System.Windows.Forms.PictureBox();
             this.btnAddMes = new System.Windows.Forms.PictureBox();
             this.btnBusqueda = new System.Windows.Forms.PictureBox();
@@ -128,9 +138,6 @@ namespace ControlAbonados.Forms
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnMenu = new System.Windows.Forms.PictureBox();
-            this.cboTipoBusqueda = new System.Windows.Forms.ComboBox();
-            this.cboBusquedas = new System.Windows.Forms.ComboBox();
-            this.lblCancelarFiltro = new System.Windows.Forms.Label();
             this.pnlSideBar.SuspendLayout();
             this.pnlListados.SuspendLayout();
             this.pnlPegues.SuspendLayout();
@@ -162,6 +169,7 @@ namespace ControlAbonados.Forms
             ((System.ComponentModel.ISupportInitialize)(this.dgvListados)).BeginInit();
             this.pnlBusqueda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorAbonado)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnQuitarMes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddMes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBusqueda)).BeginInit();
@@ -306,6 +314,7 @@ namespace ControlAbonados.Forms
             this.tabAbonados.Controls.Add(this.tabPage1);
             this.tabAbonados.Controls.Add(this.tabPage2);
             this.tabAbonados.Controls.Add(this.tabPage3);
+            this.tabAbonados.Controls.Add(this.tabPage4);
             this.bunifuTransition1.SetDecoration(this.tabAbonados, BunifuAnimatorNS.DecorationType.None);
             this.tabAbonados.Location = new System.Drawing.Point(248, 0);
             this.tabAbonados.Name = "tabAbonados";
@@ -316,6 +325,9 @@ namespace ControlAbonados.Forms
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.lblIdAbonadoEdicion);
+            this.tabPage1.Controls.Add(this.btnGuardarAbonadoEditado);
             this.tabPage1.Controls.Add(this.lblNombreCant);
             this.tabPage1.Controls.Add(this.btnGuardarAbonado);
             this.tabPage1.Controls.Add(this.pnlCantPegues);
@@ -336,6 +348,54 @@ namespace ControlAbonados.Forms
             this.tabPage1.Size = new System.Drawing.Size(1098, 701);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTransition1.SetDecoration(this.button1, BunifuAnimatorNS.DecorationType.None);
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Product Sans Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.button1.Location = new System.Drawing.Point(38, 601);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(200, 70);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Cancelar";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lblIdAbonadoEdicion
+            // 
+            this.lblIdAbonadoEdicion.AutoSize = true;
+            this.bunifuTransition1.SetDecoration(this.lblIdAbonadoEdicion, BunifuAnimatorNS.DecorationType.None);
+            this.lblIdAbonadoEdicion.Font = new System.Drawing.Font("Product Sans", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdAbonadoEdicion.Location = new System.Drawing.Point(967, 41);
+            this.lblIdAbonadoEdicion.Name = "lblIdAbonadoEdicion";
+            this.lblIdAbonadoEdicion.Size = new System.Drawing.Size(91, 25);
+            this.lblIdAbonadoEdicion.TabIndex = 16;
+            this.lblIdAbonadoEdicion.Text = "Apellidos";
+            this.lblIdAbonadoEdicion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblIdAbonadoEdicion.Visible = false;
+            // 
+            // btnGuardarAbonadoEditado
+            // 
+            this.btnGuardarAbonadoEditado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardarAbonadoEditado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnGuardarAbonadoEditado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTransition1.SetDecoration(this.btnGuardarAbonadoEditado, BunifuAnimatorNS.DecorationType.None);
+            this.btnGuardarAbonadoEditado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarAbonadoEditado.Font = new System.Drawing.Font("Product Sans Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardarAbonadoEditado.ForeColor = System.Drawing.Color.White;
+            this.btnGuardarAbonadoEditado.Location = new System.Drawing.Point(858, 601);
+            this.btnGuardarAbonadoEditado.Name = "btnGuardarAbonadoEditado";
+            this.btnGuardarAbonadoEditado.Size = new System.Drawing.Size(200, 70);
+            this.btnGuardarAbonadoEditado.TabIndex = 15;
+            this.btnGuardarAbonadoEditado.Text = "Guardar abonado";
+            this.btnGuardarAbonadoEditado.UseVisualStyleBackColor = false;
+            this.btnGuardarAbonadoEditado.Visible = false;
+            this.btnGuardarAbonadoEditado.Click += new System.EventHandler(this.btnGuardarAbonadoEditado_Click);
             // 
             // lblNombreCant
             // 
@@ -371,7 +431,7 @@ namespace ControlAbonados.Forms
             this.pnlCantPegues.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlCantPegues.Controls.Add(this.numCantPegues);
             this.bunifuTransition1.SetDecoration(this.pnlCantPegues, BunifuAnimatorNS.DecorationType.None);
-            this.pnlCantPegues.Location = new System.Drawing.Point(46, 405);
+            this.pnlCantPegues.Location = new System.Drawing.Point(38, 405);
             this.pnlCantPegues.Name = "pnlCantPegues";
             this.pnlCantPegues.Size = new System.Drawing.Size(450, 40);
             this.pnlCantPegues.TabIndex = 10;
@@ -529,6 +589,10 @@ namespace ControlAbonados.Forms
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.tabPage2.Controls.Add(this.panel1);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.lblCantMesesPagados);
+            this.tabPage2.Controls.Add(this.lblCodPegue);
             this.tabPage2.Controls.Add(this.lblCantidadPegues);
             this.tabPage2.Controls.Add(this.lblIdAbonado);
             this.tabPage2.Controls.Add(this.lblGuardandoPegue);
@@ -576,6 +640,30 @@ namespace ControlAbonados.Forms
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             // 
+            // lblCodPegue
+            // 
+            this.lblCodPegue.AutoSize = true;
+            this.bunifuTransition1.SetDecoration(this.lblCodPegue, BunifuAnimatorNS.DecorationType.None);
+            this.lblCodPegue.Font = new System.Drawing.Font("Product Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodPegue.Location = new System.Drawing.Point(175, 66);
+            this.lblCodPegue.Name = "lblCodPegue";
+            this.lblCodPegue.Size = new System.Drawing.Size(65, 18);
+            this.lblCodPegue.TabIndex = 44;
+            this.lblCodPegue.Text = "Nombres";
+            this.lblCodPegue.Visible = false;
+            // 
+            // lblCantidadPegues
+            // 
+            this.lblCantidadPegues.AutoSize = true;
+            this.bunifuTransition1.SetDecoration(this.lblCantidadPegues, BunifuAnimatorNS.DecorationType.None);
+            this.lblCantidadPegues.Font = new System.Drawing.Font("Product Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidadPegues.Location = new System.Drawing.Point(104, 66);
+            this.lblCantidadPegues.Name = "lblCantidadPegues";
+            this.lblCantidadPegues.Size = new System.Drawing.Size(65, 18);
+            this.lblCantidadPegues.TabIndex = 43;
+            this.lblCantidadPegues.Text = "Nombres";
+            this.lblCantidadPegues.Visible = false;
+            // 
             // lblIdAbonado
             // 
             this.lblIdAbonado.AutoSize = true;
@@ -586,6 +674,7 @@ namespace ControlAbonados.Forms
             this.lblIdAbonado.Size = new System.Drawing.Size(65, 18);
             this.lblIdAbonado.TabIndex = 42;
             this.lblIdAbonado.Text = "Nombres";
+            this.lblIdAbonado.Visible = false;
             // 
             // lblGuardandoPegue
             // 
@@ -745,7 +834,7 @@ namespace ControlAbonados.Forms
             this.btnSiguientePegue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSiguientePegue.Font = new System.Drawing.Font("Product Sans Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSiguientePegue.ForeColor = System.Drawing.Color.White;
-            this.btnSiguientePegue.Location = new System.Drawing.Point(846, 588);
+            this.btnSiguientePegue.Location = new System.Drawing.Point(847, 587);
             this.btnSiguientePegue.Name = "btnSiguientePegue";
             this.btnSiguientePegue.Size = new System.Drawing.Size(200, 70);
             this.btnSiguientePegue.TabIndex = 30;
@@ -1126,21 +1215,20 @@ namespace ControlAbonados.Forms
             this.btnGuardarPegue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarPegue.Font = new System.Drawing.Font("Product Sans Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardarPegue.ForeColor = System.Drawing.Color.White;
-            this.btnGuardarPegue.Location = new System.Drawing.Point(463, 429);
+            this.btnGuardarPegue.Location = new System.Drawing.Point(846, 588);
             this.btnGuardarPegue.Name = "btnGuardarPegue";
             this.btnGuardarPegue.Size = new System.Drawing.Size(200, 70);
             this.btnGuardarPegue.TabIndex = 35;
             this.btnGuardarPegue.Text = "Guardar pegues";
             this.btnGuardarPegue.UseVisualStyleBackColor = false;
             this.btnGuardarPegue.Visible = false;
+            this.btnGuardarPegue.Click += new System.EventHandler(this.btnGuardarPegue_Click);
             // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.tabPage3.Controls.Add(this.lblCancelarFiltro);
             this.tabPage3.Controls.Add(this.cboTipoBusqueda);
-            this.tabPage3.Controls.Add(this.btnGenerarReporte);
-            this.tabPage3.Controls.Add(this.btnAddAbonado);
             this.tabPage3.Controls.Add(this.btnEditarPegue);
             this.tabPage3.Controls.Add(this.btnEditarAbonado);
             this.tabPage3.Controls.Add(this.dgvListados);
@@ -1154,81 +1242,91 @@ namespace ControlAbonados.Forms
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             // 
-            // btnGenerarReporte
+            // lblCancelarFiltro
             // 
-            this.btnGenerarReporte.AutoSize = true;
-            this.btnGenerarReporte.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTransition1.SetDecoration(this.btnGenerarReporte, BunifuAnimatorNS.DecorationType.None);
-            this.btnGenerarReporte.Font = new System.Drawing.Font("Product Sans", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarReporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnGenerarReporte.Location = new System.Drawing.Point(534, 94);
-            this.btnGenerarReporte.Name = "btnGenerarReporte";
-            this.btnGenerarReporte.Size = new System.Drawing.Size(154, 25);
-            this.btnGenerarReporte.TabIndex = 12;
-            this.btnGenerarReporte.Text = "Generar reporte";
+            this.lblCancelarFiltro.AutoSize = true;
+            this.lblCancelarFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTransition1.SetDecoration(this.lblCancelarFiltro, BunifuAnimatorNS.DecorationType.None);
+            this.lblCancelarFiltro.Font = new System.Drawing.Font("Product Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCancelarFiltro.ForeColor = System.Drawing.Color.IndianRed;
+            this.lblCancelarFiltro.Location = new System.Drawing.Point(926, 75);
+            this.lblCancelarFiltro.Name = "lblCancelarFiltro";
+            this.lblCancelarFiltro.Size = new System.Drawing.Size(127, 18);
+            this.lblCancelarFiltro.TabIndex = 14;
+            this.lblCancelarFiltro.Text = "Cancelar busqueda";
+            this.lblCancelarFiltro.Click += new System.EventHandler(this.lblCancelarFiltro_Click);
             // 
-            // btnAddAbonado
+            // cboTipoBusqueda
             // 
-            this.btnAddAbonado.AutoSize = true;
-            this.btnAddAbonado.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTransition1.SetDecoration(this.btnAddAbonado, BunifuAnimatorNS.DecorationType.None);
-            this.btnAddAbonado.Font = new System.Drawing.Font("Product Sans", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddAbonado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnAddAbonado.Location = new System.Drawing.Point(329, 94);
-            this.btnAddAbonado.Name = "btnAddAbonado";
-            this.btnAddAbonado.Size = new System.Drawing.Size(189, 25);
-            this.btnAddAbonado.TabIndex = 11;
-            this.btnAddAbonado.Text = "Añadir otro abonado";
+            this.cboTipoBusqueda.BackColor = System.Drawing.Color.White;
+            this.bunifuTransition1.SetDecoration(this.cboTipoBusqueda, BunifuAnimatorNS.DecorationType.None);
+            this.cboTipoBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTipoBusqueda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboTipoBusqueda.Font = new System.Drawing.Font("Product Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipoBusqueda.FormattingEnabled = true;
+            this.cboTipoBusqueda.Items.AddRange(new object[] {
+            "Nombre",
+            "Bloque",
+            "Casa",
+            "Mes",
+            "Estado"});
+            this.cboTipoBusqueda.Location = new System.Drawing.Point(733, 94);
+            this.cboTipoBusqueda.Name = "cboTipoBusqueda";
+            this.cboTipoBusqueda.Size = new System.Drawing.Size(320, 29);
+            this.cboTipoBusqueda.TabIndex = 13;
+            this.cboTipoBusqueda.SelectedIndexChanged += new System.EventHandler(this.cboTipoBusqueda_SelectedIndexChanged);
             // 
             // btnEditarPegue
             // 
             this.btnEditarPegue.AutoSize = true;
             this.btnEditarPegue.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTransition1.SetDecoration(this.btnEditarPegue, BunifuAnimatorNS.DecorationType.None);
-            this.btnEditarPegue.Font = new System.Drawing.Font("Product Sans", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarPegue.Font = new System.Drawing.Font("Product Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarPegue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnEditarPegue.Location = new System.Drawing.Point(188, 94);
+            this.btnEditarPegue.Location = new System.Drawing.Point(179, 94);
             this.btnEditarPegue.Name = "btnEditarPegue";
-            this.btnEditarPegue.Size = new System.Drawing.Size(123, 25);
+            this.btnEditarPegue.Size = new System.Drawing.Size(124, 20);
             this.btnEditarPegue.TabIndex = 10;
-            this.btnEditarPegue.Text = "Editar pegue";
+            this.btnEditarPegue.Text = "Modificar pegue";
+            this.btnEditarPegue.Click += new System.EventHandler(this.btnEditarPegue_Click);
             // 
             // btnEditarAbonado
             // 
             this.btnEditarAbonado.AutoSize = true;
             this.btnEditarAbonado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTransition1.SetDecoration(this.btnEditarAbonado, BunifuAnimatorNS.DecorationType.None);
-            this.btnEditarAbonado.Font = new System.Drawing.Font("Product Sans", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarAbonado.Font = new System.Drawing.Font("Product Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarAbonado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnEditarAbonado.Location = new System.Drawing.Point(33, 94);
             this.btnEditarAbonado.Name = "btnEditarAbonado";
-            this.btnEditarAbonado.Size = new System.Drawing.Size(144, 25);
+            this.btnEditarAbonado.Size = new System.Drawing.Size(140, 20);
             this.btnEditarAbonado.TabIndex = 9;
-            this.btnEditarAbonado.Text = "Editar abonado";
+            this.btnEditarAbonado.Text = "Modificar abonado";
+            this.btnEditarAbonado.Click += new System.EventHandler(this.btnEditarAbonado_Click);
             // 
             // dgvListados
             // 
             this.dgvListados.AllowUserToAddRows = false;
             this.dgvListados.AllowUserToDeleteRows = false;
-            this.dgvListados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Product Sans Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvListados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Product Sans Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.bunifuTransition1.SetDecoration(this.dgvListados, BunifuAnimatorNS.DecorationType.None);
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Product Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListados.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Product Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListados.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListados.Location = new System.Drawing.Point(38, 140);
             this.dgvListados.MultiSelect = false;
             this.dgvListados.Name = "dgvListados";
@@ -1250,6 +1348,20 @@ namespace ControlAbonados.Forms
             this.pnlBusqueda.Name = "pnlBusqueda";
             this.pnlBusqueda.Size = new System.Drawing.Size(320, 40);
             this.pnlBusqueda.TabIndex = 7;
+            // 
+            // cboBusquedas
+            // 
+            this.cboBusquedas.BackColor = System.Drawing.Color.White;
+            this.bunifuTransition1.SetDecoration(this.cboBusquedas, BunifuAnimatorNS.DecorationType.None);
+            this.cboBusquedas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBusquedas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboBusquedas.Font = new System.Drawing.Font("Product Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBusquedas.FormattingEnabled = true;
+            this.cboBusquedas.Location = new System.Drawing.Point(6, 4);
+            this.cboBusquedas.Name = "cboBusquedas";
+            this.cboBusquedas.Size = new System.Drawing.Size(273, 29);
+            this.cboBusquedas.TabIndex = 6;
+            this.cboBusquedas.SelectedIndexChanged += new System.EventHandler(this.cboBusquedas_SelectedIndexChanged);
             // 
             // txtBusqueda
             // 
@@ -1275,41 +1387,87 @@ namespace ControlAbonados.Forms
             this.label21.TabIndex = 6;
             this.label21.Text = "Listado de abonados";
             // 
+            // tabPage4
+            // 
+            this.bunifuTransition1.SetDecoration(this.tabPage4, BunifuAnimatorNS.DecorationType.None);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1098, 701);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // bunifuTransition1
             // 
             this.bunifuTransition1.AnimationType = BunifuAnimatorNS.AnimationType.VertSlide;
             this.bunifuTransition1.Cursor = null;
-            animation3.AnimateOnlyDifferences = true;
-            animation3.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.BlindCoeff")));
-            animation3.LeafCoeff = 0F;
-            animation3.MaxTime = 1F;
-            animation3.MinTime = 0F;
-            animation3.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicCoeff")));
-            animation3.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicShift")));
-            animation3.MosaicSize = 0;
-            animation3.Padding = new System.Windows.Forms.Padding(0);
-            animation3.RotateCoeff = 0F;
-            animation3.RotateLimit = 0F;
-            animation3.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.ScaleCoeff")));
-            animation3.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.SlideCoeff")));
-            animation3.TimeCoeff = 0F;
-            animation3.TransparencyCoeff = 0F;
-            this.bunifuTransition1.DefaultAnimation = animation3;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.bunifuTransition1.DefaultAnimation = animation1;
             // 
             // errorAbonado
             // 
             this.errorAbonado.ContainerControl = this;
             // 
-            // lblCantidadPegues
+            // lblCantMesesPagados
             // 
-            this.lblCantidadPegues.AutoSize = true;
-            this.bunifuTransition1.SetDecoration(this.lblCantidadPegues, BunifuAnimatorNS.DecorationType.None);
-            this.lblCantidadPegues.Font = new System.Drawing.Font("Product Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidadPegues.Location = new System.Drawing.Point(104, 66);
-            this.lblCantidadPegues.Name = "lblCantidadPegues";
-            this.lblCantidadPegues.Size = new System.Drawing.Size(65, 18);
-            this.lblCantidadPegues.TabIndex = 43;
-            this.lblCantidadPegues.Text = "Nombres";
+            this.lblCantMesesPagados.AutoSize = true;
+            this.bunifuTransition1.SetDecoration(this.lblCantMesesPagados, BunifuAnimatorNS.DecorationType.None);
+            this.lblCantMesesPagados.Font = new System.Drawing.Font("Product Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantMesesPagados.Location = new System.Drawing.Point(246, 68);
+            this.lblCantMesesPagados.Name = "lblCantMesesPagados";
+            this.lblCantMesesPagados.Size = new System.Drawing.Size(65, 18);
+            this.lblCantMesesPagados.TabIndex = 45;
+            this.lblCantMesesPagados.Text = "Nombres";
+            this.lblCantMesesPagados.Visible = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.bunifuTransition1.SetDecoration(this.label13, BunifuAnimatorNS.DecorationType.None);
+            this.label13.Font = new System.Drawing.Font("Product Sans", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(458, 415);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(54, 25);
+            this.label13.TabIndex = 46;
+            this.label13.Text = "Nota";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtNota);
+            this.bunifuTransition1.SetDecoration(this.panel1, BunifuAnimatorNS.DecorationType.None);
+            this.panel1.Location = new System.Drawing.Point(463, 443);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(320, 93);
+            this.panel1.TabIndex = 47;
+            // 
+            // txtNota
+            // 
+            this.txtNota.BackColor = System.Drawing.Color.White;
+            this.txtNota.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.bunifuTransition1.SetDecoration(this.txtNota, BunifuAnimatorNS.DecorationType.None);
+            this.txtNota.Font = new System.Drawing.Font("Product Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNota.Location = new System.Drawing.Point(6, 8);
+            this.txtNota.Multiline = true;
+            this.txtNota.Name = "txtNota";
+            this.txtNota.Size = new System.Drawing.Size(305, 80);
+            this.txtNota.TabIndex = 0;
             // 
             // btnQuitarMes
             // 
@@ -1396,55 +1554,6 @@ namespace ControlAbonados.Forms
             this.btnMenu.MouseLeave += new System.EventHandler(this.pnlMenu_MouseLeave);
             this.btnMenu.MouseHover += new System.EventHandler(this.pnlMenu_MouseHover);
             // 
-            // cboTipoBusqueda
-            // 
-            this.cboTipoBusqueda.BackColor = System.Drawing.Color.White;
-            this.bunifuTransition1.SetDecoration(this.cboTipoBusqueda, BunifuAnimatorNS.DecorationType.None);
-            this.cboTipoBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipoBusqueda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboTipoBusqueda.Font = new System.Drawing.Font("Product Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboTipoBusqueda.FormattingEnabled = true;
-            this.cboTipoBusqueda.Items.AddRange(new object[] {
-            "Aplicar filtro",
-            "Nombre",
-            "Bloque",
-            "Casa",
-            "Mes",
-            "Estado"});
-            this.cboTipoBusqueda.Location = new System.Drawing.Point(733, 94);
-            this.cboTipoBusqueda.Name = "cboTipoBusqueda";
-            this.cboTipoBusqueda.Size = new System.Drawing.Size(320, 29);
-            this.cboTipoBusqueda.TabIndex = 13;
-            this.cboTipoBusqueda.SelectedIndexChanged += new System.EventHandler(this.cboTipoBusqueda_SelectedIndexChanged);
-            // 
-            // cboBusquedas
-            // 
-            this.cboBusquedas.BackColor = System.Drawing.Color.White;
-            this.bunifuTransition1.SetDecoration(this.cboBusquedas, BunifuAnimatorNS.DecorationType.None);
-            this.cboBusquedas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBusquedas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboBusquedas.Font = new System.Drawing.Font("Product Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboBusquedas.FormattingEnabled = true;
-            this.cboBusquedas.Location = new System.Drawing.Point(6, 4);
-            this.cboBusquedas.Name = "cboBusquedas";
-            this.cboBusquedas.Size = new System.Drawing.Size(273, 29);
-            this.cboBusquedas.TabIndex = 6;
-            this.cboBusquedas.SelectedIndexChanged += new System.EventHandler(this.cboBusquedas_SelectedIndexChanged);
-            // 
-            // lblCancelarFiltro
-            // 
-            this.lblCancelarFiltro.AutoSize = true;
-            this.lblCancelarFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTransition1.SetDecoration(this.lblCancelarFiltro, BunifuAnimatorNS.DecorationType.None);
-            this.lblCancelarFiltro.Font = new System.Drawing.Font("Product Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancelarFiltro.ForeColor = System.Drawing.Color.IndianRed;
-            this.lblCancelarFiltro.Location = new System.Drawing.Point(926, 75);
-            this.lblCancelarFiltro.Name = "lblCancelarFiltro";
-            this.lblCancelarFiltro.Size = new System.Drawing.Size(127, 18);
-            this.lblCancelarFiltro.TabIndex = 14;
-            this.lblCancelarFiltro.Text = "Cancelar busqueda";
-            this.lblCancelarFiltro.Click += new System.EventHandler(this.lblCancelarFiltro_Click);
-            // 
             // Abonados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1502,6 +1611,8 @@ namespace ControlAbonados.Forms
             this.pnlBusqueda.ResumeLayout(false);
             this.pnlBusqueda.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorAbonado)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnQuitarMes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddMes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBusqueda)).EndInit();
@@ -1538,7 +1649,6 @@ namespace ControlAbonados.Forms
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel pnlApellidos;
         private System.Windows.Forms.TextBox txtApellidos;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel pnlNumIdentidad;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnlNombres;
@@ -1591,8 +1701,6 @@ namespace ControlAbonados.Forms
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label btnEditarAbonado;
         private System.Windows.Forms.DataGridView dgvListados;
-        private System.Windows.Forms.Label btnGenerarReporte;
-        private System.Windows.Forms.Label btnAddAbonado;
         private System.Windows.Forms.Label btnEditarPegue;
         private System.Windows.Forms.Label lblNombreCant;
         private System.Windows.Forms.ErrorProvider errorAbonado;
@@ -1612,5 +1720,15 @@ namespace ControlAbonados.Forms
         private System.Windows.Forms.ComboBox cboTipoBusqueda;
         private System.Windows.Forms.ComboBox cboBusquedas;
         private System.Windows.Forms.Label lblCancelarFiltro;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button btnGuardarAbonadoEditado;
+        private System.Windows.Forms.Label lblIdAbonadoEdicion;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblCodPegue;
+        private System.Windows.Forms.Label lblCantMesesPagados;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtNota;
+        private System.Windows.Forms.Label label13;
     }
 }

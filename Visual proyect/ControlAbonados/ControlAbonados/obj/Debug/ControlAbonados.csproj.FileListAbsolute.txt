@@ -57,3 +57,6 @@ C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proy
 C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.EliminarAñoFromDBMigration.resources
 C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.ColumnaAñoMigration.resources
 C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.CodPegueFechaEstadoPegueMigration.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Reportes.frmListadoTodoAbonados.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.NumeroIdentidadNoEsUniqueMigration.resources
+C:\Users\Manrique\Desktop\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\obj\Debug\ControlAbonados.Migrations.NotasPegueMigration.resources

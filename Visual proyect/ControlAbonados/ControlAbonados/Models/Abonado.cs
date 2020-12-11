@@ -13,7 +13,6 @@ namespace ControlAbonados.Models
         [Key]
         public int IdAbonado { get; set; }
 
-        [Index(IsUnique=true)]
         [MaxLength(15)]
         public string NumIdentidad { get; set; }
 
