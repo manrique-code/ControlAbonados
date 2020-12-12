@@ -628,13 +628,15 @@ namespace ControlAbonados.Data
         /*
          * Funcion para obtener todos los estados posibles del pegue
          */
-        public static void obtenerEstadoPegues(ComboBox cbo)
+        public static void obtenerEstadoPegues(ComboBox cbo, int saltarse = 0)
         {
             cbo.DataSource = (
                     from ep in ctx.EstadoPegue
                     orderby ep.IdEstadoPegue
                     select new { ep.IdEstadoPegue, ep.NombreEstadoPegue }
-                ).ToList();
+                )
+                .Skip(saltarse)
+                .ToList();
             cbo.DisplayMember = "NombreEstadoPegue";
             cbo.ValueMember = "IdEstadoPegue";
         }

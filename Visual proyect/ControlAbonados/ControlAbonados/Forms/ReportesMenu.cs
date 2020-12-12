@@ -36,7 +36,7 @@ namespace ControlAbonados.Forms
         private void ReportesMenu_Load(object sender, EventArgs e)
         {
             DataAbonadoAccess.obtenerMeses(cboMes);
-            DataAbonadoAccess.obtenerEstadoPegues(cboEstado);
+            DataAbonadoAccess.obtenerEstadoPegues(cboEstado, 1);
         }
 
         public void crearOAbrirFolderReportes()
@@ -66,11 +66,12 @@ namespace ControlAbonados.Forms
 
         public void generarReporteTodoAbonados()
         {
+            pgbTodoAbonados.Visible = true;
+
             string directorioReporte = $"{Directory.GetCurrentDirectory()}\\listadoTodoAbonados.rpt";
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string folderEspecifico = $@"{desktopPath}\\Reportes\\ReporteTodoAbonado.pdf";
 
-            pgbTodoAbonados.Visible = true;
 
             using (ReportDocument oRep = new ReportDocument())
             {
@@ -93,18 +94,149 @@ namespace ControlAbonados.Forms
 
         private void generarReportesAbonado()
         {
+            pgbAbonadosActivos.Visible = true;
 
+            string directorioReporte = $"{Directory.GetCurrentDirectory()}\\listadoTodoAbonados.rpt";
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string folderEspecifico = $@"{desktopPath}\\Reportes\\ReporteAbonadosActivos.pdf";
+
+
+            using (ReportDocument oRep = new ReportDocument())
+            {
+                using (frmListadoTodoAbonados form = new frmListadoTodoAbonados())
+                {
+                    pgbAbonadosActivos.Value = 25;
+                    oRep.Load($@"{desktopPath}\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\Reportes\ListadoAbonadosActivos.rpt");
+                    oRep.Refresh();
+                    form.crystalReportViewer1.ReportSource = oRep;
+                    form.Show();
+                    oRep.ExportToDisk(ExportFormatType.PortableDocFormat, folderEspecifico);
+                    form.Close();
+                    pgbTodoAbonados.Value = 65;
+                }
+            }
+            crearOAbrirFolderReportes();
+            pgbAbonadosActivos.Value = 100;
+            pgbAbonadosActivos.Visible = false;
+        }
+
+        private void generarReporteMes()
+        {
+            pgbMes.Visible = true;
+
+            string mes = cboMes.Text;
+
+            string directorioReporte = $"{Directory.GetCurrentDirectory()}\\listadoTodoAbonados.rpt";
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string folderEspecifico = $@"{desktopPath}\\Reportes\\ReporteMes{mes}.pdf";
+
+
+            using (ReportDocument oRep = new ReportDocument())
+            {
+                using (frmListadoTodoAbonados form = new frmListadoTodoAbonados())
+                {
+                    pgbMes.Value = 25;
+                    oRep.Load($@"{desktopPath}\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\Reportes\ListadoMes.rpt");
+                    oRep.Refresh();
+                    oRep.SetParameterValue("@mes", mes);
+                    form.crystalReportViewer1.ReportSource = oRep;
+                    form.Show();
+                    oRep.ExportToDisk(ExportFormatType.PortableDocFormat, folderEspecifico);
+                    form.Close();
+                    pgbMes.Value = 65;
+                }
+            }
+            crearOAbrirFolderReportes();
+            pgbMes.Value = 100;
+            pgbMes.Visible = false;
+        }
+
+        private void generarReportesEstado()
+        {
+            pgbEstado.Visible = true;
+
+            string estado = cboEstado.Text;
+
+            string directorioReporte = $"{Directory.GetCurrentDirectory()}\\listadoTodoAbonados.rpt";
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string folderEspecifico = $@"{desktopPath}\\Reportes\\Reporte{estado}.pdf";
+
+
+            using (ReportDocument oRep = new ReportDocument())
+            {
+                using (frmListadoTodoAbonados form = new frmListadoTodoAbonados())
+                {
+                    pgbEstado.Value = 25;
+                    oRep.Load($@"{desktopPath}\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\Reportes\ListadoEstado.rpt");
+                    oRep.Refresh();
+                    oRep.SetParameterValue("@estado", estado);
+                    form.crystalReportViewer1.ReportSource = oRep;
+                    form.Show();
+                    oRep.ExportToDisk(ExportFormatType.PortableDocFormat, folderEspecifico);
+                    form.Close();
+                    pgbEstado.Value = 65;
+                }
+            }
+            crearOAbrirFolderReportes();
+            pgbEstado.Value = 100;
+            pgbEstado.Visible = false;
         }
 
         private void btnAbonado_Click(object sender, EventArgs e)
         {
-            generarReporteTodoAbonados();
+
+            try
+            {
+                generarReporteTodoAbonados();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}. \n Intentelo más tarde.", "Error", MessageBoxButtons.OK);
+            }
+            
             //string directorioReporte = $"@{Directory.GetCurrentDirectory()}\\listadoTodoAbonados.rpt";
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             irMenu();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                generarReportesAbonado();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}.\n Intentelo más tarde.", "Error", MessageBoxButtons.OK);
+            }
+        }
+
+        private void btnMes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                generarReporteMes();
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}.\nIntentelo de nuevo más tarde.", "Error", MessageBoxButtons.OK);
+            }
+
+        }
+
+        private void btnEstado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            } catch(Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}.\nIntentelo de nuevo más tarde.", "Error", MessageBoxButtons.OK);
+            }
+            generarReportesEstado();
         }
     }
 }
