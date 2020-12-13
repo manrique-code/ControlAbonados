@@ -31,7 +31,7 @@ namespace ControlAbonados
 
         private void iniciarFormularioReportes()
         {
-            Thread c = new Thread(new ThreadStart(() => Application.Run(new ReportesAbonados())));
+            Thread c = new Thread(new ThreadStart(() => Application.Run(new ReportesMenu())));
             c.Start();
             this.Close();
         }

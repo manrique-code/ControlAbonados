@@ -326,7 +326,7 @@ namespace ControlAbonados.Data
 
                     dgv.DataSource = datos;*/
 
-                    //break;
+                //break;
                 case "Nombre":
 
                     using (SqlConnection cnn = new SqlConnection(cnnStr))
@@ -448,129 +448,399 @@ namespace ControlAbonados.Data
                     dgv.DataSource = nombre;*/
                     break;
                 case "Bloque":
-                    var bloque = (
-                            from pegue in ctx.Pegue
-                            join controlPago in ctx.ControlPago
-                            on pegue.CodPegue equals controlPago.CodPegue
-                            where pegue.Bloque.NumeroBloque.StartsWith(buscar)
-                            group pegue by new
+
+                    using (SqlConnection cnn = new SqlConnection(cnnStr))
+                    {
+                        using (SqlDataAdapter da = new SqlDataAdapter())
+                        {
+                            da.SelectCommand = new SqlCommand(@"
+select pegue.#,
+pegue.Nombre,
+pegue.Apellido,
+pegue.Pegue,
+pegue.B,
+pegue.C,
+pegue.Estado,
+pegue.[Meses Pagados],
+pegue.Nota
+from
+(select a.IdAbonado '#',
+upper(a.Nombres) Nombre,
+upper(a.Apellidos) Apellido,
+tp.NombreTipoPegue Pegue,
+b.NumeroBloque B,
+p.NumCasa C,
+ep.NombreEstadoPegue Estado,
+count(m.NombreMes) 'Meses Pagados',
+p.Nota
+from pegues p inner join ControlPagoes cp
+on p.CodPegue = cp.CodPegue
+inner join mes m
+on cp.IdMes = m.IdMes
+inner join Abonadoes a
+on p.IdAbonado = a.IdAbonado
+inner join Bloques b
+on p.IdBloque = b.IdBloque
+inner join TipoPegues tp
+on p.IdTipoPegue = tp.IdTipoPegue
+full join FechaEstadoPegues fep
+on p.CodPegue = fep.CodPegue
+inner join EstadoPegues ep
+on p.IdEstadoPegue = ep.IdEstadoPegue
+group by 
+a.IdAbonado,
+upper(a.Nombres),
+upper(a.Apellidos),
+tp.NombreTipoPegue,
+b.NumeroBloque,
+p.NumCasa,
+ep.NombreEstadoPegue,
+p.Nota
+union
+select a.IdAbonado '#',
+upper(a.Nombres) Nombre,
+upper(a.Apellidos) Apellido,
+tp.NombreTipoPegue Pegue,
+b.NumeroBloque B,
+p.NumCasa C,
+ep.NombreEstadoPegue Estado,
+count(cp.IdMes) 'Meses Pagados',
+p.Nota
+from pegues p full join ControlPagoes cp
+on p.CodPegue = cp.CodPegue
+inner join Abonadoes a
+on p.IdAbonado = a.IdAbonado
+inner join Bloques b
+on p.IdBloque = b.IdBloque
+inner join TipoPegues tp
+on p.IdTipoPegue = tp.IdTipoPegue
+inner join EstadoPegues ep
+on p.IdEstadoPegue = ep.IdEstadoPegue
+group by
+a.IdAbonado,
+upper(a.Nombres),
+upper(a.Apellidos),
+tp.NombreTipoPegue,
+b.NumeroBloque,
+p.NumCasa,
+ep.NombreEstadoPegue,
+p.Nota) pegue
+where pegue.B like @nombre + '%'", cnn);
+                            da.SelectCommand.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = buscar;
+
+                            using (DataTable dt = new DataTable())
                             {
-                                pegue.Abonado.IdAbonado,
-                                pegue.Abonado.NumIdentidad,
-                                pegue.Abonado.Nombres,
-                                pegue.Abonado.Apellidos,
-                                pegue.Bloque.NumeroBloque,
-                                pegue.NumCasa,
-                                pegue.CodPegue,
-                                pegue.TipoPegue.NombreTipoPegue
-                            } into pegues
-                            select new
-                            {
-                                N = pegues.Key.IdAbonado,
-                                Identidad = pegues.Key.NumIdentidad,
-                                Nombre = pegues.Key.Nombres.ToUpper() + " " + pegues.Key.Apellidos.ToUpper(),
-                                Bloque = pegues.Key.NumeroBloque,
-                                Casa = pegues.Key.NumCasa,
-                                Pegue = pegues.Key.NombreTipoPegue,
-                                MesesPagados = pegues.Count()
+                                da.Fill(dt);
+                                dgv.DataSource = dt;
                             }
-                        ).ToList();
-                    dgv.DataSource = bloque;
-                    break;
-                case "Casa":
-                    var casa = (
-                            from pegue in ctx.Pegue
-                            join controlPago in ctx.ControlPago
-                            on pegue.CodPegue equals controlPago.CodPegue
-                            where pegue.NumCasa.StartsWith(buscar)
-                            group pegue by new
-                            {
-                                pegue.Abonado.IdAbonado,
-                                pegue.Abonado.NumIdentidad,
-                                pegue.Abonado.Nombres,
-                                pegue.Abonado.Apellidos,
-                                pegue.Bloque.NumeroBloque,
-                                pegue.NumCasa,
-                                pegue.CodPegue,
-                                pegue.TipoPegue.NombreTipoPegue
-                            } into pegues
-                            select new
-                            {
-                                N = pegues.Key.IdAbonado,
-                                Identidad = pegues.Key.NumIdentidad,
-                                Nombre = pegues.Key.Nombres.ToUpper() + " " + pegues.Key.Apellidos.ToUpper(),
-                                Bloque = pegues.Key.NumeroBloque,
-                                Casa = pegues.Key.NumCasa,
-                                Pegue = pegues.Key.NombreTipoPegue,
-                                MesesPagados = pegues.Count()
-                            }
-                        ).ToList();
-                    dgv.DataSource = casa;
+
+                            /*var bloque = (
+                                    from pegue in ctx.Pegue
+                                    join controlPago in ctx.ControlPago
+                                    on pegue.CodPegue equals controlPago.CodPegue
+                                    where pegue.Bloque.NumeroBloque.StartsWith(buscar)
+                                    group pegue by new
+                                    {
+                                        pegue.Abonado.IdAbonado,
+                                        pegue.Abonado.NumIdentidad,
+                                        pegue.Abonado.Nombres,
+                                        pegue.Abonado.Apellidos,
+                                        pegue.Bloque.NumeroBloque,
+                                        pegue.NumCasa,
+                                        pegue.CodPegue,
+                                        pegue.TipoPegue.NombreTipoPegue
+                                    } into pegues
+                                    select new
+                                    {
+                                        N = pegues.Key.IdAbonado,
+                                        Identidad = pegues.Key.NumIdentidad,
+                                        Nombre = pegues.Key.Nombres.ToUpper() + " " + pegues.Key.Apellidos.ToUpper(),
+                                        Bloque = pegues.Key.NumeroBloque,
+                                        Casa = pegues.Key.NumCasa,
+                                        Pegue = pegues.Key.NombreTipoPegue,
+                                        MesesPagados = pegues.Count()
+                                    }
+                                ).ToList();
+                            dgv.DataSource = bloque;
+                            break;
+                        case "Casa":
+                            var casa = (
+                                    from pegue in ctx.Pegue
+                                    join controlPago in ctx.ControlPago
+                                    on pegue.CodPegue equals controlPago.CodPegue
+                                    where pegue.NumCasa.StartsWith(buscar)
+                                    group pegue by new
+                                    {
+                                        pegue.Abonado.IdAbonado,
+                                        pegue.Abonado.NumIdentidad,
+                                        pegue.Abonado.Nombres,
+                                        pegue.Abonado.Apellidos,
+                                        pegue.Bloque.NumeroBloque,
+                                        pegue.NumCasa,
+                                        pegue.CodPegue,
+                                        pegue.TipoPegue.NombreTipoPegue
+                                    } into pegues
+                                    select new
+                                    {
+                                        N = pegues.Key.IdAbonado,
+                                        Identidad = pegues.Key.NumIdentidad,
+                                        Nombre = pegues.Key.Nombres.ToUpper() + " " + pegues.Key.Apellidos.ToUpper(),
+                                        Bloque = pegues.Key.NumeroBloque,
+                                        Casa = pegues.Key.NumCasa,
+                                        Pegue = pegues.Key.NombreTipoPegue,
+                                        MesesPagados = pegues.Count()
+                                    }
+                                ).ToList();
+                            dgv.DataSource = casa;*/
+                        }
+                    }
                     break;
                 case "Mes":
-                    var mes = (
-                            from pegue in ctx.Pegue
-                            join controlPago in ctx.ControlPago
-                            on pegue.CodPegue equals controlPago.CodPegue
-                            where controlPago.Mes.NombreMes.StartsWith(buscar)
-                            group pegue by new
+
+
+                    using (SqlConnection cnn = new SqlConnection(cnnStr))
+                    {
+                        using (SqlDataAdapter da = new SqlDataAdapter())
+                        {
+                            da.SelectCommand = new SqlCommand(@"
+select pegue.#,
+pegue.Nombre,
+pegue.Apellido,
+pegue.Pegue,
+pegue.B,
+pegue.C,
+pegue.Estado,
+pegue.[Meses Pagados],
+pegue.Nota
+from
+(select a.IdAbonado '#',
+upper(a.Nombres) Nombre,
+upper(a.Apellidos) Apellido,
+tp.NombreTipoPegue Pegue,
+b.NumeroBloque B,
+p.NumCasa C,
+ep.NombreEstadoPegue Estado,
+count(m.NombreMes) 'Meses Pagados',
+p.Nota
+from pegues p inner join ControlPagoes cp
+on p.CodPegue = cp.CodPegue
+inner join mes m
+on cp.IdMes = m.IdMes
+inner join Abonadoes a
+on p.IdAbonado = a.IdAbonado
+inner join Bloques b
+on p.IdBloque = b.IdBloque
+inner join TipoPegues tp
+on p.IdTipoPegue = tp.IdTipoPegue
+full join FechaEstadoPegues fep
+on p.CodPegue = fep.CodPegue
+inner join EstadoPegues ep
+on p.IdEstadoPegue = ep.IdEstadoPegue
+group by 
+a.IdAbonado,
+upper(a.Nombres),
+upper(a.Apellidos),
+tp.NombreTipoPegue,
+b.NumeroBloque,
+p.NumCasa,
+ep.NombreEstadoPegue,
+p.Nota
+union
+select a.IdAbonado '#',
+upper(a.Nombres) Nombre,
+upper(a.Apellidos) Apellido,
+tp.NombreTipoPegue Pegue,
+b.NumeroBloque B,
+p.NumCasa C,
+ep.NombreEstadoPegue Estado,
+count(cp.IdMes) 'Meses Pagados',
+p.Nota
+from pegues p full join ControlPagoes cp
+on p.CodPegue = cp.CodPegue
+inner join Abonadoes a
+on p.IdAbonado = a.IdAbonado
+inner join Bloques b
+on p.IdBloque = b.IdBloque
+inner join TipoPegues tp
+on p.IdTipoPegue = tp.IdTipoPegue
+inner join EstadoPegues ep
+on p.IdEstadoPegue = ep.IdEstadoPegue
+group by
+a.IdAbonado,
+upper(a.Nombres),
+upper(a.Apellidos),
+tp.NombreTipoPegue,
+b.NumeroBloque,
+p.NumCasa,
+ep.NombreEstadoPegue,
+p.Nota) pegue
+where pegue.[Meses Pagados] like @nombre + '%'", cnn);
+                            da.SelectCommand.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = buscar;
+
+                            using (DataTable dt = new DataTable())
                             {
-                                pegue.Abonado.IdAbonado,
-                                pegue.Abonado.NumIdentidad,
-                                pegue.Abonado.Nombres,
-                                pegue.Abonado.Apellidos,
-                                pegue.Bloque.NumeroBloque,
-                                pegue.NumCasa,
-                                pegue.CodPegue,
-                                pegue.TipoPegue.NombreTipoPegue
-                            } into pegues
-                            select new
-                            {
-                                N = pegues.Key.IdAbonado,
-                                Identidad = pegues.Key.NumIdentidad,
-                                Nombre = pegues.Key.Nombres.ToUpper() + " " + pegues.Key.Apellidos.ToUpper(),
-                                Bloque = pegues.Key.NumeroBloque,
-                                Casa = pegues.Key.NumCasa,
-                                Pegue = pegues.Key.NombreTipoPegue,
-                                Estado = "Va al día"
+                                da.Fill(dt);
+                                dgv.DataSource = dt;
                             }
-                        ).ToList();
-                    dgv.DataSource = mes;
-                    break;
-                case "Estado":
-                    var estado = (
-                            from pegue in ctx.Pegue
-                            join controlPago in ctx.ControlPago
-                            on pegue.CodPegue equals controlPago.CodPegue
-                            where pegue.EstadoPegue.NombreEstadoPegue.StartsWith(buscar)
-                            group pegue by new
+                        }
+                    }
+
+                            /*var mes = (
+                                    from pegue in ctx.Pegue
+                                    join controlPago in ctx.ControlPago
+                                    on pegue.CodPegue equals controlPago.CodPegue
+                                    where controlPago.Mes.NombreMes.StartsWith(buscar)
+                                    group pegue by new
+                                    {
+                                        pegue.Abonado.IdAbonado,
+                                        pegue.Abonado.NumIdentidad,
+                                        pegue.Abonado.Nombres,
+                                        pegue.Abonado.Apellidos,
+                                        pegue.Bloque.NumeroBloque,
+                                        pegue.NumCasa,
+                                        pegue.CodPegue,
+                                        pegue.TipoPegue.NombreTipoPegue
+                                    } into pegues
+                                    select new
+                                    {
+                                        N = pegues.Key.IdAbonado,
+                                        Identidad = pegues.Key.NumIdentidad,
+                                        Nombre = pegues.Key.Nombres.ToUpper() + " " + pegues.Key.Apellidos.ToUpper(),
+                                        Bloque = pegues.Key.NumeroBloque,
+                                        Casa = pegues.Key.NumCasa,
+                                        Pegue = pegues.Key.NombreTipoPegue,
+                                        Estado = "Va al día"
+                                    }
+                                ).ToList();
+                            dgv.DataSource = mes;*/
+                            break;
+                        case "Estado":
+
+                    using (SqlConnection cnn = new SqlConnection(cnnStr))
+                    {
+                        using (SqlDataAdapter da = new SqlDataAdapter())
+                        {
+                            da.SelectCommand = new SqlCommand(@"
+select pegue.#,
+pegue.Nombre,
+pegue.Apellido,
+pegue.Pegue,
+pegue.B,
+pegue.C,
+pegue.Estado,
+pegue.[Meses Pagados],
+pegue.Nota
+from
+(select a.IdAbonado '#',
+upper(a.Nombres) Nombre,
+upper(a.Apellidos) Apellido,
+tp.NombreTipoPegue Pegue,
+b.NumeroBloque B,
+p.NumCasa C,
+ep.NombreEstadoPegue Estado,
+ep.IdEstadoPegue,
+count(m.NombreMes) 'Meses Pagados',
+p.Nota
+from pegues p inner join ControlPagoes cp
+on p.CodPegue = cp.CodPegue
+inner join mes m
+on cp.IdMes = m.IdMes
+inner join Abonadoes a
+on p.IdAbonado = a.IdAbonado
+inner join Bloques b
+on p.IdBloque = b.IdBloque
+inner join TipoPegues tp
+on p.IdTipoPegue = tp.IdTipoPegue
+full join FechaEstadoPegues fep
+on p.CodPegue = fep.CodPegue
+inner join EstadoPegues ep
+on p.IdEstadoPegue = ep.IdEstadoPegue
+group by 
+a.IdAbonado,
+upper(a.Nombres),
+upper(a.Apellidos),
+tp.NombreTipoPegue,
+b.NumeroBloque,
+p.NumCasa,
+ep.IdEstadoPegue,
+ep.NombreEstadoPegue,
+p.Nota
+union
+select a.IdAbonado '#',
+upper(a.Nombres) Nombre,
+upper(a.Apellidos) Apellido,
+tp.NombreTipoPegue Pegue,
+b.NumeroBloque B,
+p.NumCasa C,
+ep.NombreEstadoPegue Estado,
+ep.IdEstadoPegue,
+count(cp.IdMes) 'Meses Pagados',
+p.Nota
+from pegues p full join ControlPagoes cp
+on p.CodPegue = cp.CodPegue
+inner join Abonadoes a
+on p.IdAbonado = a.IdAbonado
+inner join Bloques b
+on p.IdBloque = b.IdBloque
+inner join TipoPegues tp
+on p.IdTipoPegue = tp.IdTipoPegue
+inner join EstadoPegues ep
+on p.IdEstadoPegue = ep.IdEstadoPegue
+group by
+a.IdAbonado,
+upper(a.Nombres),
+upper(a.Apellidos),
+tp.NombreTipoPegue,
+b.NumeroBloque,
+p.NumCasa,
+ep.NombreEstadoPegue,
+ep.IdEstadoPegue,
+p.Nota) pegue
+where pegue.IdEstadoPegue like @nombre + '%'", cnn);
+                            da.SelectCommand.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = buscar;
+
+                            using (DataTable dt = new DataTable())
                             {
-                                pegue.Abonado.IdAbonado,
-                                pegue.Abonado.NumIdentidad,
-                                pegue.Abonado.Nombres,
-                                pegue.Abonado.Apellidos,
-                                pegue.Bloque.NumeroBloque,
-                                pegue.NumCasa,
-                                pegue.CodPegue,
-                                pegue.TipoPegue.NombreTipoPegue,
-                                pegue.EstadoPegue.NombreEstadoPegue
-                            } into pegues
-                            select new
-                            {
-                                N = pegues.Key.IdAbonado,
-                                Identidad = pegues.Key.NumIdentidad,
-                                Nombre = pegues.Key.Nombres.ToUpper() + " " + pegues.Key.Apellidos.ToUpper(),
-                                Bloque = pegues.Key.NumeroBloque,
-                                Casa = pegues.Key.NumCasa,
-                                Pegue = pegues.Key.NombreTipoPegue,
-                                Estado = pegues.Key.NombreEstadoPegue,
-                                MesesPagados = (pegues.Key.NombreEstadoPegue == "Activo") ? pegues.Count().ToString() : "No ha pagado debido a que está: " + pegues.Key.NombreEstadoPegue.ToLower()
+                                da.Fill(dt);
+                                dgv.DataSource = dt;
                             }
-                        ).ToList();
-                    dgv.DataSource = estado;
-                    break;
+                        }
+                    }
+
+
+                /*var estado = (
+                         from pegue in ctx.Pegue
+                         join controlPago in ctx.ControlPago
+                         on pegue.CodPegue equals controlPago.CodPegue
+                         where pegue.EstadoPegue.NombreEstadoPegue.StartsWith(buscar)
+                         group pegue by new
+                         {
+                             pegue.Abonado.IdAbonado,
+                             pegue.Abonado.NumIdentidad,
+                             pegue.Abonado.Nombres,
+                             pegue.Abonado.Apellidos,
+                             pegue.Bloque.NumeroBloque,
+                             pegue.NumCasa,
+                             pegue.CodPegue,
+                             pegue.TipoPegue.NombreTipoPegue,
+                             pegue.EstadoPegue.NombreEstadoPegue
+                         } into pegues
+                         select new
+                         {
+                             N = pegues.Key.IdAbonado,
+                             Identidad = pegues.Key.NumIdentidad,
+                             Nombre = pegues.Key.Nombres.ToUpper() + " " + pegues.Key.Apellidos.ToUpper(),
+                             Bloque = pegues.Key.NumeroBloque,
+                             Casa = pegues.Key.NumCasa,
+                             Pegue = pegues.Key.NombreTipoPegue,
+                             Estado = pegues.Key.NombreEstadoPegue,
+                             MesesPagados = (pegues.Key.NombreEstadoPegue == "Activo") ? pegues.Count().ToString() : "No ha pagado debido a que está: " + pegues.Key.NombreEstadoPegue.ToLower()
+                         }
+                     ).ToList();
+                 dgv.DataSource = estado;*/
+                 break;
                 default:
-                    break;
+                            break;
             }
 
         }
