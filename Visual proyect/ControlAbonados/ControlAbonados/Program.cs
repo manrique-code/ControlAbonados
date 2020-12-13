@@ -17,7 +17,7 @@ namespace ControlAbonados
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Abonados());
+            Application.Run(new Menu());
         }
     }
 }

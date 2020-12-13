@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using ControlAbonados.Forms;
 using ControlAbonados.Data;
 using ControlAbonados.Models;
+using ControlAbonados.Data;
 
 namespace ControlAbonados
 {
@@ -38,7 +39,41 @@ namespace ControlAbonados
 
         private void Menu_Load(object sender, EventArgs e)
         {
-            //WindowState = FormWindowState.Maximized;
+            try
+            {
+                //cantidad de abonados por estado
+                int cantidadAbonadosActivos = DataMenuAccess.cantidadAbonadosPorEstado("Activo");
+                int cantidadAbonadosInactivos = DataMenuAccess.cantidadAbonadosPorEstado("Inactivo");
+                int cantidadAbonadosSuspendidos = DataMenuAccess.cantidadAbonadosPorEstado("Suspendido");
+                int cantidadAbonadosCasaSola = DataMenuAccess.cantidadAbonadosPorEstado("Casa sola");
+                int cantidadAbonadosCortado = DataMenuAccess.cantidadAbonadosPorEstado("Cortado");
+                int cantidadAbonadosSolarB = DataMenuAccess.cantidadAbonadosPorEstado("Solar baldío");
+
+                //cantidad de abonados por tipo
+                int cantidadAbonadosTerceraEdad = DataMenuAccess.cantidadAbonadosPorTipo("Tercera Edad");
+                int cantidadAbonadosCisterna = DataMenuAccess.cantidadAbonadosPorTipo("Cisterna");
+                int cantidadAbonadosNormales = DataMenuAccess.cantidadAbonadosPorTipo("Normal");
+
+                int totalAbonados = DataMenuAccess.cantidadTotalAbonados();
+
+                int totalInactivos = cantidadAbonadosCasaSola + cantidadAbonadosCortado + cantidadAbonadosInactivos + cantidadAbonadosSolarB + cantidadAbonadosSuspendidos;
+                decimal porcentajePago = (Convert.ToDecimal(cantidadAbonadosActivos)/Convert.ToDecimal(totalAbonados))*100;
+
+                lblAbonadosActivos.Text = $"{cantidadAbonadosActivos} abonados.";
+                lblAbonadosInactivos.Text = $"{totalInactivos} abonados.";
+                lblTotalAbonados.Text = $"{totalAbonados} abonados";
+
+                lblAbonadosCisterna.Text = $"{cantidadAbonadosCisterna} abonados.";
+                lblAbonadosNormales.Text = $"{cantidadAbonadosNormales} abonados.";
+                lblAbonadosTercerEdad.Text = $"{cantidadAbonadosTerceraEdad} abonados.";
+
+                lblPorcentajeAbonadosPago.Text = $"{Math.Round(porcentajePago)}% de los abonados\nvan al día.";
+                pgbPago.Value = Convert.ToInt32(porcentajePago);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}. \n Intentelo de nuevo más tarde.");
+            }
         }
 
         private void btnAbonado_Click(object sender, EventArgs e)

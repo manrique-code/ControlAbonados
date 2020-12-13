@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataAbonadoAccess.cs" />
+    <Compile Include="Data\DataMenuAccess.cs" />
     <Compile Include="Forms\Abonados.cs">
       <SubType>Form</SubType>
     </Compile>
