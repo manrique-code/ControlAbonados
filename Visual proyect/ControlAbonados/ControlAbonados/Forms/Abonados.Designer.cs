@@ -112,6 +112,8 @@ namespace ControlAbonados.Forms
             this.lblCantPegues = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.dgvBloqueCasa = new System.Windows.Forms.DataGridView();
+            this.BLOQUE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CASA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTablaBloqueCasa = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.pnlNumIdentidadTab2 = new System.Windows.Forms.Panel();
@@ -125,6 +127,7 @@ namespace ControlAbonados.Forms
             this.lblTitulo = new System.Windows.Forms.Label();
             this.btnGuardarPegue = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblCantResultados = new System.Windows.Forms.Label();
             this.lblCancelarFiltro = new System.Windows.Forms.Label();
             this.cboTipoBusqueda = new System.Windows.Forms.ComboBox();
             this.btnEditarPegue = new System.Windows.Forms.Label();
@@ -138,9 +141,6 @@ namespace ControlAbonados.Forms
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.bunifuTransition1 = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.errorAbonado = new System.Windows.Forms.ErrorProvider(this.components);
-            this.BLOQUE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CASA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblCantResultados = new System.Windows.Forms.Label();
             this.pnlSideBar.SuspendLayout();
             this.pnlListados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -1214,6 +1214,20 @@ namespace ControlAbonados.Forms
             this.dgvBloqueCasa.Size = new System.Drawing.Size(320, 240);
             this.dgvBloqueCasa.TabIndex = 14;
             // 
+            // BLOQUE
+            // 
+            this.BLOQUE.Frozen = true;
+            this.BLOQUE.HeaderText = "BLOQUE";
+            this.BLOQUE.Name = "BLOQUE";
+            this.BLOQUE.ReadOnly = true;
+            // 
+            // CASA
+            // 
+            this.CASA.Frozen = true;
+            this.CASA.HeaderText = "CASA";
+            this.CASA.Name = "CASA";
+            this.CASA.ReadOnly = true;
+            // 
             // lblTablaBloqueCasa
             // 
             this.lblTablaBloqueCasa.AutoSize = true;
@@ -1375,6 +1389,20 @@ namespace ControlAbonados.Forms
             this.tabPage3.Size = new System.Drawing.Size(1098, 724);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
+            // 
+            // lblCantResultados
+            // 
+            this.lblCantResultados.AutoSize = true;
+            this.lblCantResultados.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTransition1.SetDecoration(this.lblCantResultados, BunifuAnimatorNS.DecorationType.None);
+            this.lblCantResultados.Font = new System.Drawing.Font("Product Sans Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantResultados.ForeColor = System.Drawing.Color.Black;
+            this.lblCantResultados.Location = new System.Drawing.Point(34, 98);
+            this.lblCantResultados.Name = "lblCantResultados";
+            this.lblCantResultados.Size = new System.Drawing.Size(93, 20);
+            this.lblCantResultados.TabIndex = 15;
+            this.lblCantResultados.Text = "Resultados:";
+            this.lblCantResultados.Visible = false;
             // 
             // lblCancelarFiltro
             // 
@@ -1539,7 +1567,7 @@ namespace ControlAbonados.Forms
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1098, 701);
+            this.tabPage4.Size = new System.Drawing.Size(1098, 724);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1568,34 +1596,6 @@ namespace ControlAbonados.Forms
             // errorAbonado
             // 
             this.errorAbonado.ContainerControl = this;
-            // 
-            // BLOQUE
-            // 
-            this.BLOQUE.Frozen = true;
-            this.BLOQUE.HeaderText = "BLOQUE";
-            this.BLOQUE.Name = "BLOQUE";
-            this.BLOQUE.ReadOnly = true;
-            // 
-            // CASA
-            // 
-            this.CASA.Frozen = true;
-            this.CASA.HeaderText = "CASA";
-            this.CASA.Name = "CASA";
-            this.CASA.ReadOnly = true;
-            // 
-            // lblCantResultados
-            // 
-            this.lblCantResultados.AutoSize = true;
-            this.lblCantResultados.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTransition1.SetDecoration(this.lblCantResultados, BunifuAnimatorNS.DecorationType.None);
-            this.lblCantResultados.Font = new System.Drawing.Font("Product Sans Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantResultados.ForeColor = System.Drawing.Color.Black;
-            this.lblCantResultados.Location = new System.Drawing.Point(34, 98);
-            this.lblCantResultados.Name = "lblCantResultados";
-            this.lblCantResultados.Size = new System.Drawing.Size(93, 20);
-            this.lblCantResultados.TabIndex = 15;
-            this.lblCantResultados.Text = "Resultados:";
-            this.lblCantResultados.Visible = false;
             // 
             // Abonados
             // 

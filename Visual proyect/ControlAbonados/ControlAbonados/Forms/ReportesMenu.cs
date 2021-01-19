@@ -137,6 +137,7 @@ namespace ControlAbonados.Forms
                 {
                     pgbMes.Value = 25;
                     oRep.Load($@"{desktopPath}\PROYECTO CONTROL ABONADO\ControlAbonadoApp\Visual proyect\ControlAbonados\ControlAbonados\Reportes\ListadoMes.rpt");
+                    oRep.SetDataSource(ControlAbonados.Properties.Settings.Default.cnnString);
                     oRep.Refresh();
                     oRep.SetParameterValue("@mes", mes);
                     form.crystalReportViewer1.ReportSource = oRep;

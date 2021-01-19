@@ -333,79 +333,81 @@ namespace ControlAbonados.Data
                     {
                         using (SqlDataAdapter da = new SqlDataAdapter())
                         {
+                            string[] nombreCompleto = new string[2];
+                            nombreCompleto = buscar.Split('-');
                             da.SelectCommand = new SqlCommand(@"
                                 select pegue.#,
-	                            pegue.Nombre,
-	                            pegue.Apellido,
-	                            pegue.Pegue,
-	                            pegue.B,
-	                            pegue.C,
-	                            pegue.Estado,
-	                            pegue.[Meses Pagados],
-	                            pegue.Nota
-	                            from
-	                                (select a.IdAbonado '#',
-	                                upper(a.Nombres) Nombre,
-	                                upper(a.Apellidos) Apellido,
-	                                tp.NombreTipoPegue Pegue,
-	                                b.NumeroBloque B,
-	                                p.NumCasa C,
-	                                ep.NombreEstadoPegue Estado,
-	                                count(m.NombreMes) 'Meses Pagados',
-	                                p.Nota
-	                                from pegues p inner join ControlPagoes cp
-	                                on p.CodPegue = cp.CodPegue
-	                                inner join mes m
-	                                on cp.IdMes = m.IdMes
-	                                inner join Abonadoes a
-	                                on p.IdAbonado = a.IdAbonado
-	                                inner join Bloques b
-	                                on p.IdBloque = b.IdBloque
-	                                inner join TipoPegues tp
-	                                on p.IdTipoPegue = tp.IdTipoPegue
-	                                full join FechaEstadoPegues fep
-	                                on p.CodPegue = fep.CodPegue
-	                                inner join EstadoPegues ep
-	                                on p.IdEstadoPegue = ep.IdEstadoPegue
-	                                group by 
-	                                a.IdAbonado,
-	                                upper(a.Nombres),
-	                                upper(a.Apellidos),
-	                                tp.NombreTipoPegue,
-	                                b.NumeroBloque,
-	                                p.NumCasa,
-	                                ep.NombreEstadoPegue,
-	                                p.Nota
-                                union
-	                                select a.IdAbonado '#',
-	                                upper(a.Nombres) Nombre,
-	                                upper(a.Apellidos) Apellido,
-	                                tp.NombreTipoPegue Pegue,
-	                                b.NumeroBloque B,
-	                                p.NumCasa C,
-	                                ep.NombreEstadoPegue Estado,
-	                                count(cp.IdMes) 'Meses Pagados',
-	                                p.Nota
-	                                from pegues p full join ControlPagoes cp
-	                                on p.CodPegue = cp.CodPegue
-	                                inner join Abonadoes a
-	                                on p.IdAbonado = a.IdAbonado
-	                                inner join Bloques b
-	                                on p.IdBloque = b.IdBloque
-	                                inner join TipoPegues tp
-	                                on p.IdTipoPegue = tp.IdTipoPegue
-	                                inner join EstadoPegues ep
-	                                on p.IdEstadoPegue = ep.IdEstadoPegue
-	                                group by
-	                                a.IdAbonado,
-	                                upper(a.Nombres),
-	                                upper(a.Apellidos),
-	                                tp.NombreTipoPegue,
-	                                b.NumeroBloque,
-	                                p.NumCasa,
-	                                ep.NombreEstadoPegue,
-	                                p.Nota) pegue
-	                            where pegue.Nombre like @nombre + '%'", cnn);
+pegue.Nombre,
+pegue.Apellido,
+pegue.Pegue,
+pegue.B,
+pegue.C,
+pegue.Estado,
+pegue.[Meses Pagados],
+pegue.Nota
+from
+(select a.IdAbonado '#',
+upper(a.Nombres) Nombre,
+upper(a.Apellidos) Apellido,
+tp.NombreTipoPegue Pegue,
+b.NumeroBloque B,
+p.NumCasa C,
+ep.NombreEstadoPegue Estado,
+count(m.NombreMes) 'Meses Pagados',
+p.Nota
+from pegues p inner join ControlPagoes cp
+on p.CodPegue = cp.CodPegue
+inner join mes m
+on cp.IdMes = m.IdMes
+inner join Abonadoes a
+on p.IdAbonado = a.IdAbonado
+inner join Bloques b
+on p.IdBloque = b.IdBloque
+inner join TipoPegues tp
+on p.IdTipoPegue = tp.IdTipoPegue
+full join FechaEstadoPegues fep
+on p.CodPegue = fep.CodPegue
+inner join EstadoPegues ep
+on p.IdEstadoPegue = ep.IdEstadoPegue
+group by 
+a.IdAbonado,
+upper(a.Nombres),
+upper(a.Apellidos),
+tp.NombreTipoPegue,
+b.NumeroBloque,
+p.NumCasa,
+ep.NombreEstadoPegue,
+p.Nota
+union
+select a.IdAbonado '#',
+upper(a.Nombres) Nombre,
+upper(a.Apellidos) Apellido,
+tp.NombreTipoPegue Pegue,
+b.NumeroBloque B,
+p.NumCasa C,
+ep.NombreEstadoPegue Estado,
+count(cp.IdMes) 'Meses Pagados',
+p.Nota
+from pegues p full join ControlPagoes cp
+on p.CodPegue = cp.CodPegue
+inner join Abonadoes a
+on p.IdAbonado = a.IdAbonado
+inner join Bloques b
+on p.IdBloque = b.IdBloque
+inner join TipoPegues tp
+on p.IdTipoPegue = tp.IdTipoPegue
+inner join EstadoPegues ep
+on p.IdEstadoPegue = ep.IdEstadoPegue
+group by
+a.IdAbonado,
+upper(a.Nombres),
+upper(a.Apellidos),
+tp.NombreTipoPegue,
+b.NumeroBloque,
+p.NumCasa,
+ep.NombreEstadoPegue,
+p.Nota) pegue
+where CONCAT(pegue.Nombre, ' ', pegue.Apellido) like '%'+ @nombre + '%'", cnn);
                             da.SelectCommand.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = buscar;
 
                             using (DataTable dt = new DataTable())
